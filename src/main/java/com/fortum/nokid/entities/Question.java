@@ -1,21 +1,39 @@
 package com.fortum.nokid.entities;
 
 
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name="Questions")
 public class Question {
-    private String question;
-    private List<String> answers;
 
-    public Question(String question) {
-        this.question = question;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotNull
+    private String content;
+
+    public Question() {}
+
+    public Question(String content) {
+        this.content = content;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getContent() {
+        return content;
     }
 
-    public List<String> getAnswers() {
-        return answers;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
