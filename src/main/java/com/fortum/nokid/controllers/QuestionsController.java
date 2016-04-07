@@ -4,6 +4,7 @@ import com.fortum.nokid.entities.Question;
 import com.fortum.nokid.entities.QuestionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +26,12 @@ public class QuestionsController {
         questions.add(new Question("What is your name?"));
         questions.add(new Question("ÄÖÜ äöü"));
 
+
         return questions;
     }
 
-    @RequestMapping("/create")
-    public String create(String content){
+    @RequestMapping("/create/{content}")
+    public String create(@PathVariable("content") String content){
         Question question;
         try{
             question=new Question(content);
@@ -51,6 +53,11 @@ public class QuestionsController {
             return new Question(ex.toString());
         }
         return question;
+    }
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<Question> getAll() {
+        return questionDAO.findAll();
     }
 
     @Autowired
