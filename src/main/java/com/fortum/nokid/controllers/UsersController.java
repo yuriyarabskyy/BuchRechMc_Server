@@ -43,10 +43,11 @@ public class UsersController {
         return "Successfully create user with the id = " + user.getId();
     }
 
-    @RequestMapping(value = "getUsersByName/{name}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<User> getUsersByName(@PathVariable("name")String name) {
+    @RequestMapping(value = "/getUsersByName", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<User> getUsersByName(@RequestParam("name")String name) {
         return userDAO.findByNameIgnoreCase(name);
     }
+
 
 
 

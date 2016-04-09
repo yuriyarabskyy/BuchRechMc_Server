@@ -16,4 +16,6 @@ public class VorlesungPDFController {
     @Autowired
     private VorlesungPDFDAO vorlesungPDFDAO;
 
+
+
 }
