@@ -4,12 +4,10 @@ import com.fortum.nokid.entities.Question;
 import com.fortum.nokid.entities.QuestionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @RequestMapping("/questions")
@@ -43,22 +41,68 @@ public class QuestionsController {
     }
 
 
-    @RequestMapping(value ="/get-by-content",method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Question getByContent(String content){
-        Question question;
+    @RequestMapping(value ="/getByContent",method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Question> getByContent(@RequestBody String content){
+        List<Question> questions;
         try {
-            question = questionDAO.findByContentIgnoreCase(content);
+            questions = questionDAO.findByContentIgnoreCase(content);
         }
         catch (Exception ex) {
-            return new Question(ex.toString());
+            questions = new LinkedList<>();
+            questions.add(new Question(ex.toString()));
         }
-        return question;
+        return questions;
+    }
+
+    @RequestMapping(value ="/getById", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Question> getById(@RequestBody String ids){
+
+        List<Question> questions = new LinkedList<>();
+
+        for (String id : ids.trim().split(",")) {
+
+            try {
+                Question question = questionDAO.findById(Long.parseLong(id));
+                if (question != null) questions.add(question);
+            }
+            catch (Exception ex) {
+                questions = new LinkedList<>();
+                questions.add(new Question(ex.toString()));
+                return questions;
+            }
+
+        }
+        return questions;
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
     public Iterable<Question> getAll() {
         return questionDAO.findAll();
     }
+
+    @RequestMapping(value = "/pushQuestions", method = RequestMethod.POST)
+    @ResponseBody
+    public String pushQuestions(@RequestBody List<Question> questions) {
+
+        try {
+            questionDAO.save(questions);
+        }
+        catch(Exception ex) {
+            return "Something went horribly wrong";
+        }
+
+        return "Successfully saved your questions";
+
+    }
+
+    /*
+    @RequestMapping(value = "/getCount", method = RequestMethod.GET)
+    @ResponseBody
+    public int getCount() {
+        TODO custom behaviour to count
+    }
+    */
 
     @Autowired
     private QuestionDAO questionDAO;

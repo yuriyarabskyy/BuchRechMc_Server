@@ -12,6 +12,6 @@ public interface QuestionDAO extends CrudRepository<Question, Long> {
 
     Question findById(long id);
 
-    Question findByContentIgnoreCase(String content);
+    List<Question> findByContentIgnoreCase(String content);
 
 }
