@@ -22,7 +22,6 @@ public class QuestionsController {
         List<Question> questions=new ArrayList<>();
         questions.add(new Question("How are you?"));
         questions.add(new Question("What is your name?"));
-        questions.add(new Question("ÄÖÜ äöü"));
 
 
         return questions;
