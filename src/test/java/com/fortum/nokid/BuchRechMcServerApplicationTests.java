@@ -11,9 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,9 +35,28 @@ public class BuchRechMcServerApplicationTests {
 
             byte[] arr = Files.readAllBytes(path);
 
-            vorlesungPDFDAO.save(new VorlesungPdf("test", arr));
+            vorlesungPDFDAO.insertPdf(new VorlesungPdf("testPdf", arr));
+
+            System.out.println("Success");
 
         } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    @Test
+    public void getPdfTest() {
+
+        try {
+
+            VorlesungPdf pdf = vorlesungPDFDAO.getPdfByName("testPdf");
+
+            OutputStream writer = new FileOutputStream(pdf.getName() + ".pdf");
+
+            writer.write(pdf.getContent());
+
+            writer.flush();
+
+        } catch (Exception e) { e.printStackTrace(); }
+
     }
 
 }

@@ -5,6 +5,10 @@ import com.fortum.nokid.entities.VorlesungPdf;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by yuriy on 07.04.16.
@@ -17,28 +21,32 @@ public class VorlesungPDFController {
     @Autowired
     private VorlesungPDFDAO vorlesungPDFDAO;
 
+    @RequestMapping(value="/upload", method = RequestMethod.GET)
+    public ModelAndView showUploadForm() {
+        return new ModelAndView("upload");
+    }
 
-    @RequestMapping(value="insertPdf", method = RequestMethod.POST)
-    public @ResponseBody String insertPdf(@RequestParam("fileName") String fileName, @RequestParam("content") String content) {
 
-        // to receive this string, I have to encode it the same way into a base64string
-        byte[] byteContent = Base64.decodeBase64(content);
+    @RequestMapping(value="/doUpload", method = RequestMethod.POST)
+    public String handlePdfUpload(HttpServletRequest request, @RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
 
-        try {
+        if (fileUpload != null && fileUpload.length > 0) {
+            for (CommonsMultipartFile file : fileUpload) {
 
-            vorlesungPDFDAO.save(new VorlesungPdf(fileName, byteContent));
+                System.out.println("Saving file: " + file.getOriginalFilename());
 
-        } catch (Exception e) {
-
-            return "Something went horribly wrong";
-
+                VorlesungPdf vorlesungPdf = new VorlesungPdf();
+                vorlesungPdf.setName(file.getName());
+                vorlesungPdf.setContent(file.getBytes());
+                vorlesungPDFDAO.insertPdf(vorlesungPdf);
+            }
         }
 
         return "Your pdf was successfully stored in the database";
 
     }
 
-
+/*
     @RequestMapping(value="gedPdfByName", method = RequestMethod.GET)
     public @ResponseBody VorlesungPdf getPdf(@PathVariable("fileName") String fileName) {
 
@@ -56,7 +64,7 @@ public class VorlesungPDFController {
         return vorlesung;
 
     }
-
+*/
 
 
 

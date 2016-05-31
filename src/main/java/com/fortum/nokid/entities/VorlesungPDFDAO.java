@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface VorlesungPDFDAO extends CrudRepository<VorlesungPdf, Long>, VorlesungCustom {
+public interface VorlesungPDFDAO {
 
-    public VorlesungPdf findByNameIgnoreCase(String name);
+    void insertPdf(VorlesungPdf pdf);
+
+    VorlesungPdf getPdfByName(String name);
 
 }

@@ -19,9 +19,10 @@ public class VorlesungPdf {
     @NotNull
     private String name;
 
+    @Lob
     private byte[] content = null;
 
-    private int questionsPageNumber;
+    //private int questionsPageNumber = 0;
 
 
     //instead of this, I defined a vorlesungID in the Page class
@@ -29,23 +30,19 @@ public class VorlesungPdf {
     @ElementCollection
     private List<Page> pages;
 */
-    VorlesungPdf() { }
-
-    public VorlesungPdf(long id, String name, int questionsPageNumber) {
-        this.id = id;
-        this.name = name;
-        this.questionsPageNumber = questionsPageNumber;
-    }
+    public VorlesungPdf() { }
 
     public VorlesungPdf(long id, String name) {
-
         this.id = id;
         this.name = name;
+        //this.questionsPageNumber = questionsPageNumber;
     }
+
 
     public VorlesungPdf(String name, byte[] content) {
         this.name = name;
         this.content = content;
+       // this.questionsPageNumber = questionsPageNumber;
     }
 
     public byte[] getContent() { return content; }
@@ -66,13 +63,9 @@ public class VorlesungPdf {
 
     public void setContent(byte[] content) { this.content = content; }
 
-    public int getQuestionsPageNumber() {
-        return questionsPageNumber;
-    }
+    //public int getQuestionsPageNumber() { return questionsPageNumber; }
 
-    public void setQuestionsPageNumber(int questionsPageNumber) {
-        this.questionsPageNumber = questionsPageNumber;
-    }
+    //public void setQuestionsPageNumber(int questionsPageNumber) { this.questionsPageNumber = questionsPageNumber; }
 
   /*  public List<Page> getPages() {
         return pages;
