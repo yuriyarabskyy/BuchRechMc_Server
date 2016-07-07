@@ -1,6 +1,8 @@
 package com.fortum.nokid.entities;
 
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Question {
     @ElementCollection
     private List<String> possibleAnswers;
 
-    private int rightAnswerIndex;
+    private int rightAnswerIndex = -1;
 
     private String thema;
 
@@ -27,11 +29,11 @@ public class Question {
 
     private String hint;
 
-    private boolean isRightAnswered;
+    private boolean isRightAnswered = false;
 
     public Question() {}
 
-    public Question(String content) {
+    public Question(String content) {a
         this.content = content;
     }
 

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.fortum.nokid.BuchRechMcServerApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.1 sec - in com.fortum.nokid.BuchRechMcServerApplicationTests

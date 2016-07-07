@@ -21,11 +21,6 @@ public class VorlesungPDFController {
     @Autowired
     private VorlesungPDFDAO vorlesungPDFDAO;
 
-    @RequestMapping(value="/upload", method = RequestMethod.GET)
-    public ModelAndView showUploadForm() {
-        return new ModelAndView("upload");
-    }
-
 
     @RequestMapping(value="/doUpload", method = RequestMethod.POST)
     public String handlePdfUpload(HttpServletRequest request, @RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
@@ -46,7 +41,7 @@ public class VorlesungPDFController {
 
     }
 
-/*
+
     @RequestMapping(value="gedPdfByName", method = RequestMethod.GET)
     public @ResponseBody VorlesungPdf getPdf(@PathVariable("fileName") String fileName) {
 
@@ -54,7 +49,7 @@ public class VorlesungPDFController {
 
         try {
 
-            vorlesung = vorlesungPDFDAO.findByNameIgnoreCase(fileName);
+            vorlesung = vorlesungPDFDAO.getPdfByName(fileName);
 
             return vorlesung;
 
@@ -64,7 +59,7 @@ public class VorlesungPDFController {
         return vorlesung;
 
     }
-*/
+
 
 
 
