@@ -19,9 +19,6 @@ public class VorlesungPdf {
     @NotNull
     private String name;
 
-    @Lob
-    private byte[] content = null;
-
     //private int questionsPageNumber = 0;
 
 
@@ -39,13 +36,11 @@ public class VorlesungPdf {
     }
 
 
-    public VorlesungPdf(String name, byte[] content) {
+    public VorlesungPdf(String name) {
         this.name = name;
-        this.content = content;
        // this.questionsPageNumber = questionsPageNumber;
     }
 
-    public byte[] getContent() { return content; }
 
     public long getId() {
         return id;
@@ -60,8 +55,6 @@ public class VorlesungPdf {
     }
 
     public void setName(String name) { this.name = name; }
-
-    public void setContent(byte[] content) { this.content = content; }
 
     //public int getQuestionsPageNumber() { return questionsPageNumber; }
 

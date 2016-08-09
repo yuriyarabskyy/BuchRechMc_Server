@@ -74,12 +74,14 @@ public class QuestionsController {
         return questions;
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public Iterable<Question> getAll() {
         return questionDAO.findAll();
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/pushQuestions", method = RequestMethod.POST)
     @ResponseBody
     public String pushQuestions(@RequestBody List<Question> questions) {

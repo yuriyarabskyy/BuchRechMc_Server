@@ -35,28 +35,12 @@ public class BuchRechMcServerApplicationTests {
 
             byte[] arr = Files.readAllBytes(path);
 
-            vorlesungPDFDAO.insertPdf(new VorlesungPdf("testPdf", arr));
+            vorlesungPDFDAO.insertPdf(new VorlesungPdf("testPdf"));
 
             System.out.println("Success");
 
         } catch (Exception e) { e.printStackTrace(); }
     }
 
-    @Test
-    public void getPdfTest() {
-
-        try {
-
-            VorlesungPdf pdf = vorlesungPDFDAO.getPdfByName("testPdf");
-
-            OutputStream writer = new FileOutputStream(pdf.getName() + ".pdf");
-
-            writer.write(pdf.getContent());
-
-            writer.flush();
-
-        } catch (Exception e) { e.printStackTrace(); }
-
-    }
 
 }

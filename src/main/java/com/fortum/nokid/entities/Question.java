@@ -33,7 +33,7 @@ public class Question {
 
     public Question() {}
 
-    public Question(String content) {a
+    public Question(String content) {
         this.content = content;
     }
 
