@@ -25,18 +25,19 @@ public class UsersController {
 
         List<User> users = new LinkedList<>();
 
-        users.add(new User("Sam", 28, null));
-        users.add(new User("Dean", 45, null));
+        users.add(new User("Winchester", "Sam", null));
+        users.add(new User("Winchester", "Dean", null));
 
         return users;
 
     }
 
-    @RequestMapping(value = "/create/{name}", method = RequestMethod.GET)
-    public String create(@PathVariable("name")String name) {
+    @RequestMapping(value = "/create/{firstname}/{lastname}", method = RequestMethod.GET)
+    public String create(@PathVariable("firstname")String firstname,
+                         @PathVariable("lastname")String lastname) {
         User user;
         try {
-            user = new User(name, 0, null);
+            user = new User(lastname, firstname);
             userDAO.save(user);
         } catch (Exception e) { return "Error creating the user"; }
 
@@ -45,7 +46,7 @@ public class UsersController {
 
     @RequestMapping(value = "/getUsersByName", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<User> getUsersByName(@RequestParam("name")String name) {
-        return userDAO.findByNameIgnoreCase(name);
+        return userDAO.findBylastNameIgnoreCase(name);
     }
 
 

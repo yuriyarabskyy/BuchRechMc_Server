@@ -1,107 +1,57 @@
 package com.fortum.nokid.entities;
 
 
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="Questions")
-public class Question {
+@Table(name="questions")
+public class Question implements Serializable {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+    @Column(name = "content")
     private String content;
 
     @ElementCollection
-    private List<String> possibleAnswers;
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
+    private List<Answer> possibleAnswers;
 
-    private int rightAnswerIndex = -1;
+    @Column(name="topic")
+    private String topic;
 
-    private String thema;
+    @Column(name="chapter")
+    private int chapter;
 
-    private String kapitel;
-
+    @Column(name="hint")
     private String hint;
 
-    private boolean isRightAnswered = false;
+    @Column(name="correct_answer_id")
+    private int correctAnswerId;
 
-    public Question() {}
+    @Column(name="is_booking_entry")
+    private boolean isBookingEntry;
+
+    @OneToMany(mappedBy = "question")
+    private List<QuestionLecture> questionLectures;
+
+    public Question() {
+    }
 
     public Question(String content) {
         this.content = content;
     }
 
-    public Question(String content, List<String> possibleAnswers, int rightAnswerIndex, String thema, String kapitel, String hint) {
-        this.content = content;
-        this.possibleAnswers = possibleAnswers;
-        this.rightAnswerIndex = rightAnswerIndex;
-        this.thema = thema;
-        this.kapitel = kapitel;
-        this.hint = hint;
+    public long getId() {
+        return id;
     }
 
-    public Question(String content, List<String> possibleAnswers, int rightAnswerIndex, String thema, String kapitel, String hint, boolean isRightAnswered) {
-        this.content = content;
-        this.possibleAnswers = possibleAnswers;
-        this.rightAnswerIndex = rightAnswerIndex;
-        this.thema = thema;
-        this.kapitel = kapitel;
-        this.hint = hint;
-        this.isRightAnswered = isRightAnswered;
-    }
-
-    public List<String> getPossibleAnswers() {
-        return possibleAnswers;
-    }
-
-    public void setPossibleAnswers(List<String> possibleAnswers) {
-        this.possibleAnswers = possibleAnswers;
-    }
-
-    public int getRightAnswerIndex() {
-        return rightAnswerIndex;
-    }
-
-    public void setRightAnswerIndex(int rightAnswerIndex) {
-        this.rightAnswerIndex = rightAnswerIndex;
-    }
-
-    public String getThema() {
-        return thema;
-    }
-
-    public void setThema(String thema) {
-        this.thema = thema;
-    }
-
-    public String getKapitel() {
-        return kapitel;
-    }
-
-    public void setKapitel(String kapitel) {
-        this.kapitel = kapitel;
-    }
-
-    public String getHint() {
-        return hint;
-    }
-
-    public void setHint(String hint) {
-        this.hint = hint;
-    }
-
-    public boolean isRightAnswered() {
-        return isRightAnswered;
-    }
-
-    public void setRightAnswered(boolean rightAnswered) {
-        isRightAnswered = rightAnswered;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getContent() {
@@ -112,11 +62,59 @@ public class Question {
         this.content = content;
     }
 
-    public long getId() {
-        return id;
+    public List<Answer> getPossibleAnswers() {
+        return possibleAnswers;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPossibleAnswers(List<Answer> possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public int getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(int chapter) {
+        this.chapter = chapter;
+    }
+
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
+
+    public int getCorrectAnswerId() {
+        return correctAnswerId;
+    }
+
+    public void setCorrectAnswerId(int correctAnswerId) {
+        this.correctAnswerId = correctAnswerId;
+    }
+
+    public boolean isBookingEntry() {
+        return isBookingEntry;
+    }
+
+    public void setBookingEntry(boolean bookingEntry) {
+        isBookingEntry = bookingEntry;
+    }
+
+    private List<QuestionLecture> getQuestionLectures() {
+        return questionLectures;
+    }
+
+    private void setQuestionLectures(List<QuestionLecture> questionLectures) {
+        this.questionLectures = questionLectures;
     }
 }

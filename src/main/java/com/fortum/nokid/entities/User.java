@@ -2,7 +2,8 @@ package com.fortum.nokid.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by yuriy on 06.04.16.
@@ -10,58 +11,65 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
-    @NotNull
-    private String name;
+    @Column(name = "last_name")
+    private String lastName;
 
-    private int score;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @ElementCollection
-    private List<Question> answeredQuestions;
+    @OneToMany(mappedBy = "user")
+    private Collection<UserQuestion> answeredQuestions;
 
     public User() { }
 
-    public User(String name, int score, List<Question> answeredQuestions) {
-        this.name = name;
-        this.score = score;
+    public User(String lastName, String firstName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
+
+    public User(String lastName, String firstName, Collection<UserQuestion> answeredQuestions) {
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.answeredQuestions = answeredQuestions;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public int getScore() {
-        return score;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public List<Question> getAnsweredQuestions() {
+    public Collection<UserQuestion> getAnsweredQuestions() {
         return answeredQuestions;
     }
 
-    public void setAnsweredQuestions(List<Question> answeredQuestions) {
+    public void setAnsweredQuestions(Collection<UserQuestion> answeredQuestions) {
         this.answeredQuestions = answeredQuestions;
     }
 }

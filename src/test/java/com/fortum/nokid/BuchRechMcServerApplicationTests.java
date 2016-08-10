@@ -1,7 +1,6 @@
 package com.fortum.nokid;
 
-import com.fortum.nokid.entities.VorlesungPDFDAO;
-import com.fortum.nokid.entities.VorlesungPdf;
+import com.fortum.nokid.entities.*;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,26 +20,38 @@ import java.nio.file.Paths;
 @WebAppConfiguration
 public class BuchRechMcServerApplicationTests {
 
+
     @Autowired
-    VorlesungPDFDAO vorlesungPDFDAO;
+    QuestionDAO questionDAO;
 
-	@Test
-    public void insertPdf() {
+    @Autowired
+    UserDAO userDAO;
 
-        String pathString = "Resources/slides/02_TUM WS 2016_17_GL_final_V1_Lsg.pdf";
+
+    @Test
+    public void questionTest() {
 
         try {
 
-            Path path = Paths.get(pathString);
+            Question q = questionDAO.findById(1);
 
-            byte[] arr = Files.readAllBytes(path);
-
-            vorlesungPDFDAO.insertPdf(new VorlesungPdf("testPdf"));
-
-            System.out.println("Success");
+            for (Answer a : q.getPossibleAnswers()) {
+                System.out.println(a.getAnswer());
+            }
 
         } catch (Exception e) { e.printStackTrace(); }
+
     }
 
+    @Test
+    public void userCreateTest() {
+
+        try {
+
+            userDAO.save(new User("Martin", "George"));
+
+        } catch (Exception e) { e.printStackTrace(); }
+
+    }
 
 }

@@ -9,7 +9,7 @@ create a new question don't mention the id, it will be automatically
 generated. If you want to change a question under an existing id, include the id
 in the question definition.
 
-Example
+Example (old version)
 
 ```json
 [
@@ -31,6 +31,22 @@ Example
 	  "kapitel": null,
 	  "hint": null,
 	  "rightAnswered": false
+  }
+]
+```
+
+Example (new version)
+
+```json
+[
+  {
+      "content": "2+2=?",
+	  "rightAnswerIndex": 0,
+	  "topic": "Weatheorology",
+	  "chapter": 1,
+	  "hint": No clues here,
+      "correctAnswerId": 2,
+      "isBookingEntry": false
   }
 ]
 ```

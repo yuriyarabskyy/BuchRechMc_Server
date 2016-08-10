@@ -1,7 +1,5 @@
 package com.fortum.nokid;
 
-import com.fortum.nokid.entities.VorlesungPDFDAO;
-import com.fortum.nokid.entities.VorlesungRepositoryImpl;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -75,11 +73,6 @@ public class BuchRechMcServerApplication {
 		};
 	}
 
-	@Autowired
-	@Bean(name = "vorlesungPDFDAO")
-	public VorlesungPDFDAO getPdfDao(SessionFactory sessionFactory) {
-		return new VorlesungRepositoryImpl(sessionFactory);
-	}
 /*
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver getCommonsMultipartResolver() {
