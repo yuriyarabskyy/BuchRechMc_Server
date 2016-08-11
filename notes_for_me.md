@@ -89,3 +89,7 @@ start_chapter and end_chapter into lecture
 
     }
 ```
+
+curl -H "Content-Type: application/json" -X POST -d '[{"content":"2+2=?","correctAnswerId":1,"topic":"Weather","chapter":2,"hint":"nohint","isBookingEntry":false,"fromPage":1,"toPage":4,"possibleAnswers":[{"answerId":1,"answer":4}]}]' http://localhost:8080/questions/pushQuestions
+
+**to make Post requests in terminal**

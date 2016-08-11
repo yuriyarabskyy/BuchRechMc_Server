@@ -11,26 +11,33 @@ create a new question don't mention the id, it will be automatically
 generated. If you want to change a question under an existing id, include the id
 in the question definition.
 
+All answers in possibleAnswers will be saved automatically into answers.
+
 Example (new version)
 
 ```json
 [
   {
     "content": "2+2=?",
-	  "rightAnswerIndex": 0,
-	  "topic": "Weatheorology",
+	  "topic": "Weather",
 	  "chapter": 1,
 	  "hint": "No clues here",
-    "correctAnswerId": 2,
+    "correctAnswerId": 1,
     "isBookingEntry": false,
     "fromPage": 1,
-    "toPage": 4
+    "toPage": 4,
+    "possibleAnswers": [
+      {"answerId":1,"answer":"4"},
+      {"answerId":1,"answer":"5"},
+      {"answerId":1,"answer":"0"},
+      {"answerId":1,"answer":"4"},
+      {"answerId":1,"answer":"No idea"},
+    ]
   },
   {
     "id": 1,
     "content": "2+2=?",
-	  "rightAnswerIndex": 0,
-	  "topic": "Weatheorology",
+	  "topic": "Weather",
 	  "chapter": 1,
 	  "hint": "No clues here",
     "correctAnswerId": 2,

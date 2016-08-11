@@ -21,7 +21,7 @@ create table questions (
 
 create table answers (
   question_id int NOT NULL,
-  answer_id int NOT NULL,
+  answer_id int NOT NULL AUTO_INCREMENT,
   answer varchar(511),
   PRIMARY KEY (answer_id),
   FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE

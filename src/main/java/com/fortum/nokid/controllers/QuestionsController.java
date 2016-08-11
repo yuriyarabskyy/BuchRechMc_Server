@@ -1,5 +1,7 @@
 package com.fortum.nokid.controllers;
 
+import com.fortum.nokid.entities.Answer;
+import com.fortum.nokid.entities.AnswerDAO;
 import com.fortum.nokid.entities.Question;
 import com.fortum.nokid.entities.QuestionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,12 @@ public class QuestionsController {
 
         try {
             questionDAO.save(questions);
+            for (Question q : questions) {
+                for (Answer a : q.getPossibleAnswers()) {
+                    a.setQuestion(q);
+                    answerDAO.save(a);
+                }
+            }
         }
         catch(Exception ex) {
             return "Something went horribly wrong";
@@ -77,4 +85,7 @@ public class QuestionsController {
 
     @Autowired
     private QuestionDAO questionDAO;
+
+    @Autowired
+    private AnswerDAO answerDAO;
 }
