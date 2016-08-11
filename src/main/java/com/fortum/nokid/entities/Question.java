@@ -25,7 +25,7 @@ public class Question implements Serializable {
     private String topic;
 
     @Column(name="chapter")
-    private int chapter;
+    private String chapter;
 
     @Column(name="hint")
     private String hint;
@@ -78,11 +78,11 @@ public class Question implements Serializable {
         this.topic = topic;
     }
 
-    public int getChapter() {
+    public String getChapter() {
         return chapter;
     }
 
-    public void setChapter(int chapter) {
+    public void setChapter(String chapter) {
         this.chapter = chapter;
     }
 

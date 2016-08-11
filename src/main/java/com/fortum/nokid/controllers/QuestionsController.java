@@ -14,9 +14,6 @@ import java.util.List;
 @RestController
 public class QuestionsController {
 
-
-
-
     @RequestMapping(value = "/getDummies",method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Question> getAllQuestions(){
         List<Question> questions=new ArrayList<>();
