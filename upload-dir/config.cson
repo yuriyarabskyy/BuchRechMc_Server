@@ -1,0 +1,99 @@
+"*":
+  Repl: {}
+  "activate-power-mode":
+    autoToggle: false
+  "atom-clock": {}
+  "autocomplete-clang":
+    "std c": "c11"
+    "std c++": "c++14"
+  "autocomplete-plus":
+    backspaceTriggersAutocomplete: true
+    confirmCompletion: "tab"
+  "autocomplete-python": {}
+  build:
+    overrideThemeColors: false
+    saveOnBuild: true
+    scrollOnError: true
+  "build-cmake": {}
+  core:
+    disabledPackages: [
+      "markdown-preview"
+      "symbols-view"
+      "formatter-clang-format"
+    ]
+    packagesWithKeymapsDisabled: [
+      "markdown-writer"
+    ]
+    themes: [
+      "atom-material-ui"
+      "itg-dark-syntax"
+    ]
+  editor:
+    fontFamily: "Hack"
+    fontSize: 12
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    tabType: "soft"
+  "ever-notedown": {}
+  "exception-reporting":
+    userId: "6fa3d067-d4f8-8be5-f4fd-9932c2e2b341"
+  "find-and-replace":
+    caseSensitive: true
+    focusEditorAfterSearch: true
+    useRegex: true
+  "formatter-clangformat":
+    c:
+      enable: false
+    cpp:
+      enable: false
+    js:
+      enable: false
+    objc:
+      enable: false
+  latex:
+    enableShellEscape: true
+    openResultAfterBuild: false
+    openResultInBackground: false
+  linter: {}
+  "linter-clang":
+    clangDefaultCppFlags: "-Wall -std=c++14"
+  "linter-cpplint": {}
+  "linter-pylama":
+    executablePath: "/usr/local/bin/pylama"
+    ignoreErrorsAndWarnings: "W191"
+  "linter-pylint":
+    rcFile: "~/.pylintrc"
+  "linter-scspell": {}
+  "markdown-preview": {}
+  "markdown-preview-plus":
+    breakOnSingleNewline: true
+    enableLatexRenderingByDefault: true
+    useGitHubStyle: true
+  "markdown-themeable-pdf": {}
+  "markdown-writer":
+    fileExtension: ".md"
+    siteEngine: "jekyll"
+    tableAlignment: "left"
+  "merge-conflicts": {}
+  minimap:
+    absoluteMode: true
+  "pdf-view": {}
+  "python-tools": {}
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+      "source.litcoffee"
+      "text.markdown.evnd.mathjax.source.litcoffee.inline.html"
+      "text.markdown.evnd.mathjax.source.gfm.inline.html"
+      "text.markdown.evnd.source.gfm.inline.html"
+      "text.tex.latex"
+    ]
+  welcome:
+    showOnStartup: false
