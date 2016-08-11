@@ -1,3 +1,5 @@
+# Put /api/ before every call
+
 ## Posting questions
 
 Everything relatively to **/questions**.
@@ -70,6 +72,18 @@ example: 1,2,3,5,7
 Http Post
 
 Write the content of the question in the body.
+
+# Answer Questions
+
+**/answerQuestion**
+
+```json
+{
+  "user_id": 1,
+  "question_id": 2,
+  "answer_id": 3
+}
+```
 
 ## Creating users
 
