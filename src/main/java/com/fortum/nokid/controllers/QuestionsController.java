@@ -31,7 +31,7 @@ public class QuestionsController {
             question=new Question(content);
             questionDAO.save(question);
         }catch (Exception ex){
-            return "Error creating the user: " + ex.toString();
+            return "Error creating the question: " + ex.toString();
         }
         return "Question was succesfully created! (id = " + question.getId() + ")";
     }
