@@ -23,11 +23,23 @@ public class Lecture implements Serializable {
     @OneToMany(mappedBy = "lecture")
     private List<QuestionLecture> questionLectures;
 
+    @Column(name = "start_chapter")
+    private int startChapter;
+
+    @Column(name = "end_chapter")
+    private int endChapter;
+
     public Lecture() {
     }
 
     public Lecture(String name) {
         this.name = name;
+    }
+
+    public Lecture(String name, int startChapter, int endChapter) {
+        this.name = name;
+        this.startChapter = startChapter;
+        this.endChapter = endChapter;
     }
 
     public Lecture(int id, String name) {
@@ -57,5 +69,21 @@ public class Lecture implements Serializable {
 
     private void setQuestionLectures(List<QuestionLecture> questionLectures) {
         this.questionLectures = questionLectures;
+    }
+
+    public int getStartChapter() {
+        return startChapter;
+    }
+
+    public void setStartChapter(int startChapter) {
+        this.startChapter = startChapter;
+    }
+
+    public int getEndChapter() {
+        return endChapter;
+    }
+
+    public void setEndChapter(int endChapter) {
+        this.endChapter = endChapter;
     }
 }

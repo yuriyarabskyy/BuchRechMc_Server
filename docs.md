@@ -22,7 +22,9 @@ Example (new version)
 	  "chapter": 1,
 	  "hint": "No clues here",
     "correctAnswerId": 2,
-    "isBookingEntry": false
+    "isBookingEntry": false,
+    "fromPage": 1,
+    "toPage": 4
   },
   {
     "id": 1,
@@ -32,7 +34,9 @@ Example (new version)
 	  "chapter": 1,
 	  "hint": "No clues here",
     "correctAnswerId": 2,
-    "isBookingEntry": false
+    "isBookingEntry": false,
+    "fromPage": 1,
+    "toPage": 4
   }
 ]
 ```
@@ -68,8 +72,8 @@ Relatively to **/users**.
 
 ```json
 {
-  "lastName"="Winchester",
-  "firstName"="Sam"
+  "lastName": "Winchester",
+  "firstName": "Sam"
 }
 ```
 

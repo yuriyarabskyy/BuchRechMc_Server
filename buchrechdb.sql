@@ -14,6 +14,8 @@ create table questions (
   hint varchar(511),
   correct_answer_id int,
   is_booking_entry boolean,
+  from_page int NOT NULL,
+  to_page int NOT NULL,
   PRIMARY KEY(id)
 );
 
@@ -41,16 +43,7 @@ create table users_questions (
 create table lectures (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255),
+  start_chapter int,
+  end_chapter int,
   PRIMARY KEY(id)
-);
-
-create table questions_lectures (
-  id int NOT NULL AUTO_INCREMENT,
-  lecture_id int NOT NULL,
-  from_page int NOT NULL,
-  to_page int NOT NULL,
-  question_id int NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (lecture_id) REFERENCES lectures(id),
-  FOREIGN KEY (question_id) REFERENCES questions(id)
 );

@@ -52,6 +52,20 @@ Need to consult you.
 
 Need to consult you too.
 
+# TODO
+
+Add two attributes previous and next. Sort the list according to from_page.
+
+/getLecture
+
+chapter_name
+
+from_page and to_page into question
+
+start_chapter and end_chapter into lecture
+
+
+
 
 # Lessons learned
 

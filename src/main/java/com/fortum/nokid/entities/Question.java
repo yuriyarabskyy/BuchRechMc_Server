@@ -36,8 +36,11 @@ public class Question implements Serializable {
     @Column(name="is_booking_entry")
     private boolean isBookingEntry;
 
-    @OneToMany(mappedBy = "question")
-    private List<QuestionLecture> questionLectures;
+    @Column(name="from_page")
+    private int fromPage;
+
+    @Column(name="to_page")
+    private int toPage;
 
     public Question() {
     }
@@ -110,11 +113,4 @@ public class Question implements Serializable {
         isBookingEntry = bookingEntry;
     }
 
-    private List<QuestionLecture> getQuestionLectures() {
-        return questionLectures;
-    }
-
-    private void setQuestionLectures(List<QuestionLecture> questionLectures) {
-        this.questionLectures = questionLectures;
-    }
 }
