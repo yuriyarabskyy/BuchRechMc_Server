@@ -1,7 +1,5 @@
 package com.fortum.nokid.entities;
 
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
 import java.io.Serializable;

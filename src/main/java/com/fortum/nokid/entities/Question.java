@@ -81,9 +81,7 @@ public class Question implements Serializable {
         this.topic = topic;
     }
 
-    public String getChapter() {
-        return chapter;
-    }
+    public String getChapter() { return chapter; }
 
     public void setChapter(String chapter) {
         this.chapter = chapter;
@@ -113,4 +111,19 @@ public class Question implements Serializable {
         isBookingEntry = bookingEntry;
     }
 
+    public int getFromPage() {
+        return fromPage;
+    }
+
+    public void setFromPage(int fromPage) {
+        this.fromPage = fromPage;
+    }
+
+    public int getToPage() {
+        return toPage;
+    }
+
+    public void setToPage(int toPage) {
+        this.toPage = toPage;
+    }
 }

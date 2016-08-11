@@ -6,37 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @RequestMapping("/questions")
 @RestController
 public class QuestionsController {
 
-    @RequestMapping(value = "/getDummies",method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Question> getAllQuestions(){
-        List<Question> questions=new ArrayList<>();
-        questions.add(new Question("How are you?"));
-        questions.add(new Question("What is your name?"));
-
-
-        return questions;
-    }
-
-    @RequestMapping("/create/{content}")
-    public String create(@PathVariable("content") String content){
-        Question question;
-        try{
-            question=new Question(content);
-            questionDAO.save(question);
-        }catch (Exception ex){
-            return "Error creating the question: " + ex.toString();
-        }
-        return "Question was succesfully created! (id = " + question.getId() + ")";
-    }
-
-
+    @CrossOrigin(origins = "*")
     @RequestMapping(value ="/getByContent",method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Question> getByContent(@RequestBody String content){
         List<Question> questions;
@@ -50,6 +26,7 @@ public class QuestionsController {
         return questions;
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value ="/getById", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Question> getById(@RequestBody String ids){
 
@@ -75,7 +52,11 @@ public class QuestionsController {
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public Iterable<Question> getAll() {
-        return questionDAO.findAll();
+        List<Question> questions = new ArrayList<>();
+        Iterable<Question> iterable = questionDAO.findAll();
+        iterable.forEach(question -> questions.add(question));
+        Collections.sort(questions, (Question q1, Question q2) -> q1.getFromPage() - q2.getFromPage());
+        return questions;
     }
 
     @CrossOrigin(origins = "*")
@@ -93,14 +74,6 @@ public class QuestionsController {
         return "Successfully saved your questions";
 
     }
-
-    /*
-    @RequestMapping(value = "/getCount", method = RequestMethod.GET)
-    @ResponseBody
-    public int getCount() {
-        TODO custom behaviour to count
-    }
-    */
 
     @Autowired
     private QuestionDAO questionDAO;

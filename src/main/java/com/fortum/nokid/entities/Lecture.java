@@ -2,7 +2,6 @@ package com.fortum.nokid.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by yuriy on 10/08/16.

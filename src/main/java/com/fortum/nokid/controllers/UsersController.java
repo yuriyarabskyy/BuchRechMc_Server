@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,14 +44,5 @@ public class UsersController {
             users = userDAO.findByfirstNameIgnoreCase(firstName);
         return users;
     }
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/getUsersByFirstName", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<User> getUsersByFirstName(@RequestParam("name")String name) {
-        return userDAO.findByfirstNameIgnoreCase(name);
-    }
-
-
-
 
 }
