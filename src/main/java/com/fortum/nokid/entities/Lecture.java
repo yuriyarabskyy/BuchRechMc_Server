@@ -20,9 +20,6 @@ public class Lecture implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "lecture")
-    private List<QuestionLecture> questionLectures;
-
     @Column(name = "start_chapter")
     private int startChapter;
 
@@ -61,14 +58,6 @@ public class Lecture implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    private List<QuestionLecture> getQuestionLectures() {
-        return questionLectures;
-    }
-
-    private void setQuestionLectures(List<QuestionLecture> questionLectures) {
-        this.questionLectures = questionLectures;
     }
 
     public int getStartChapter() {
