@@ -1,12 +1,15 @@
 package com.fortum.nokid.entities;
 
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name="questions")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Question implements Serializable {
 
     @Id
@@ -17,7 +20,6 @@ public class Question implements Serializable {
     @Column(name = "content")
     private String content;
 
-    @ElementCollection
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     private List<Answer> possibleAnswers;
 
@@ -41,6 +43,10 @@ public class Question implements Serializable {
 
     @Column(name="to_page")
     private int toPage;
+
+    @OneToMany(mappedBy = "question")
+    @JsonIgnore
+    private List<UserQuestion> userQuestions;
 
     public Question() {
     }
@@ -125,5 +131,13 @@ public class Question implements Serializable {
 
     public void setToPage(int toPage) {
         this.toPage = toPage;
+    }
+
+    public List<UserQuestion> getUserQuestions() {
+        return userQuestions;
+    }
+
+    public void setUserQuestions(List<UserQuestion> userQuestions) {
+        this.userQuestions = userQuestions;
     }
 }

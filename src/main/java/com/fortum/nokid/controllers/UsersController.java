@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * Created by yuriy on 06.04.16.
  */
 
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @RestController
 public class UsersController {
 

@@ -20,10 +20,11 @@ create table questions (
 );
 
 create table answers (
+  id int NOT NULL AUTO_INCREMENT,
   question_id int NOT NULL,
-  answer_id int NOT NULL AUTO_INCREMENT,
+  answer_id int NOT NULL,
   answer varchar(511),
-  PRIMARY KEY (answer_id),
+  PRIMARY KEY (id),
   FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
 );
 
@@ -36,8 +37,7 @@ create table users_questions (
   given_answer_id int,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
-  FOREIGN KEY (given_answer_id) REFERENCES answers(answer_id)
+  FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE
 );
 
 create table lectures (

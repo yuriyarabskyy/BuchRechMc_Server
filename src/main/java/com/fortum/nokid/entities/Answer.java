@@ -1,5 +1,10 @@
 package com.fortum.nokid.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,13 +15,19 @@ import java.util.List;
 
 @Entity
 @Table(name = "answers")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Answer implements Serializable {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
+    @JsonIgnore
     private Question question;
 
-    @Id
     @Column(name = "answer_id")
     private int answerId;
 
@@ -24,9 +35,18 @@ public class Answer implements Serializable {
     private String answer;
 
     @OneToMany(mappedBy = "givenAnswer")
+    @JsonIgnore
     private List<UserQuestion> userQuestions;
 
     public Answer() { }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Question getQuestion() {
         return question;

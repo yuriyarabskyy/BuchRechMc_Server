@@ -1,5 +1,7 @@
 package com.fortum.nokid.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -24,6 +26,7 @@ public class User {
     private String firstName;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Collection<UserQuestion> answeredQuestions;
 
     public User() { }

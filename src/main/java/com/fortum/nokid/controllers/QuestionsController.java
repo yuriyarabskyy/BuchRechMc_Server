@@ -1,16 +1,13 @@
 package com.fortum.nokid.controllers;
 
-import com.fortum.nokid.entities.Answer;
-import com.fortum.nokid.entities.AnswerDAO;
-import com.fortum.nokid.entities.Question;
-import com.fortum.nokid.entities.QuestionDAO;
+import com.fortum.nokid.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RequestMapping("/questions")
+@RequestMapping("/api/questions")
 @RestController
 public class QuestionsController {
 
@@ -83,9 +80,45 @@ public class QuestionsController {
 
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/answerQuestion", method = RequestMethod.POST)
+    @ResponseBody
+    public String answerQuestion(@RequestBody AnswerQuestionWrapper wrapper) {
+        try {
+            UserQuestion uq = new UserQuestion();
+            User user = userDAO.findById(wrapper.user_id);
+            Question question = questionDAO.findById(wrapper.question_id);
+            uq.setUser(user);
+            uq.setQuestion(question);
+            uq.setGivenAnswer(answerDAO.findByQuestionAndAnswerId(question, wrapper.answer_id));
+            uq.setTried(true);
+            if (question.getCorrectAnswerId() == wrapper.answer_id)
+                uq.setCorrectlyAnswered(true);
+            else uq.setCorrectlyAnswered(false);
+            uqDAO.save(uq);
+        } catch (Exception e) {
+            return "Something went wrong";
+        }
+        return "Success";
+    }
+
+
+    @Autowired
+    private UserDAO userDAO;
+
     @Autowired
     private QuestionDAO questionDAO;
 
     @Autowired
     private AnswerDAO answerDAO;
+
+    @Autowired
+    private UserQuestionDAO uqDAO;
+
+    public static class AnswerQuestionWrapper {
+        int user_id;
+        int question_id;
+        int answer_id;
+    }
+
 }

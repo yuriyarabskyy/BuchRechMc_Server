@@ -26,7 +26,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 
 @Controller
-@RequestMapping(value = "/lectures")
+@RequestMapping(value = "/api/lectures")
 public class LecturesController {
 
     @Autowired

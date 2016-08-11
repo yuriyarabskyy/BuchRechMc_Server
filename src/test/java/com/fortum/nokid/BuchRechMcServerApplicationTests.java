@@ -27,6 +27,8 @@ public class BuchRechMcServerApplicationTests {
     @Autowired
     UserDAO userDAO;
 
+    @Autowired
+    AnswerDAO answerDAO;
 
     @Test
     public void questionTest() {
@@ -49,6 +51,21 @@ public class BuchRechMcServerApplicationTests {
         try {
 
             userDAO.save(new User("Martin", "George"));
+
+        } catch (Exception e) { e.printStackTrace(); }
+
+    }
+
+    @Test
+    public void uqTest() {
+
+        try {
+
+            Question q = questionDAO.findById(2);
+
+            int id = answerDAO.findByQuestionAndAnswerId(q, 1).getId();
+
+            System.out.println(id);
 
         } catch (Exception e) { e.printStackTrace(); }
 
