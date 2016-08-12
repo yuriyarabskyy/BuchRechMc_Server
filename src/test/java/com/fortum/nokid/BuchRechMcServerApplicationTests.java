@@ -45,16 +45,6 @@ public class BuchRechMcServerApplicationTests {
 
     }
 
-    @Test
-    public void userCreateTest() {
-
-        try {
-
-            userDAO.save(new User("Martin", "George"));
-
-        } catch (Exception e) { e.printStackTrace(); }
-
-    }
 
     @Test
     public void uqTest() {

@@ -63,7 +63,12 @@ chapter_name
 from_page and to_page into question
 
 start_chapter and end_chapter into lecture
+//
+add to users some stuff
 
+lectures
+
+question - getAllTopics
 
 
 

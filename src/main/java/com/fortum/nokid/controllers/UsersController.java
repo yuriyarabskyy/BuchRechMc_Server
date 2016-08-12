@@ -26,15 +26,17 @@ public class UsersController {
     public String create(@RequestBody User user) {
         try {
             userDAO.save(user);
-        } catch (Exception e) { return "Error creating the user"; }
+        } catch (Exception e) {
+            return "Error creating the user";
+        }
 
         return "Successfully create user with the id = " + user.getId();
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getUsersByName", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<User> getUsersByLastName(@RequestParam(value = "", required = false)String lastName,
-                                             @RequestParam(value = "", required = false)String firstName) {
+    public Iterable<User> getUsersByLastName(@RequestParam(value = "", required = false) String lastName,
+                                             @RequestParam(value = "", required = false) String firstName) {
         List<User> users = new ArrayList<>();
         if (!lastName.isEmpty()) users = userDAO.findBylastNameIgnoreCase(lastName);
         if (!firstName.isEmpty() && !lastName.isEmpty()) users.stream()
@@ -44,5 +46,9 @@ public class UsersController {
             users = userDAO.findByfirstNameIgnoreCase(firstName);
         return users;
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<User> getAll() { return userDAO.findAll(); }
 
 }

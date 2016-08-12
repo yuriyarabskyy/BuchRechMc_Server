@@ -117,6 +117,16 @@ public class QuestionsController {
         return "Success";
     }
 
+    @CrossOrigin(origins = "*")
+    @Transactional
+    @RequestMapping(value = "/getAllTopics", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Iterable<TopicWrapper> getAllTopics() {
+        String s = "select chapter, topic from questions q " +
+                "group by chapter, topic order by chapter ASC";
+        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(s);
+        List<TopicWrapper> list = (List<TopicWrapper>)query.list();
+        return list;
+    }
 
     @Autowired
     private UserDAO userDAO;
@@ -162,6 +172,34 @@ public class QuestionsController {
 
         public void setAnswer_id(int answer_id) {
             this.answer_id = answer_id;
+        }
+    }
+
+    public static class TopicWrapper {
+        private int chapter;
+        private String topic;
+
+        TopicWrapper() { }
+
+        public TopicWrapper(int chapter, String topic) {
+            this.chapter = chapter;
+            this.topic = topic;
+        }
+
+        public int getChapter() {
+            return chapter;
+        }
+
+        public void setChapter(int chapter) {
+            this.chapter = chapter;
+        }
+
+        public String getTopic() {
+            return topic;
+        }
+
+        public void setTopic(String topic) {
+            this.topic = topic;
         }
     }
 

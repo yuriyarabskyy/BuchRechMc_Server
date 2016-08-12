@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -41,6 +42,7 @@ public class LecturesController {
         this.resourceLoader = resourceLoader;
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String provideUploadInfo(Model model) throws IOException {
 
@@ -54,6 +56,7 @@ public class LecturesController {
     }
 
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public String handleFileUpload(HttpServletRequest request,
                                    RedirectAttributes redirectAttributes) {
@@ -88,6 +91,7 @@ public class LecturesController {
     }
 
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/{filename:.+}")
     @ResponseBody
     public ResponseEntity<?> getFile(@PathVariable String filename) {
@@ -100,6 +104,7 @@ public class LecturesController {
     }
 
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/getLectureByName", method = RequestMethod.GET)
     public @ResponseBody
     Lecture getLectureByName(@RequestParam("name") String fileName) {
@@ -107,16 +112,18 @@ public class LecturesController {
         Lecture lecture = null;
 
         try {
-
             lecture = lectureDAO.findBynameIgnoreCase(fileName);
-
-            return lecture;
-
-
         } catch (Exception e) { e.printStackTrace(); }
 
         return lecture;
 
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/getAll", method = RequestMethod.GET)
+    public Iterable<Lecture> getAll() {
+        return lectureDAO.findAll();
     }
 
 }

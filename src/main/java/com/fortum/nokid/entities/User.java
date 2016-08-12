@@ -25,22 +25,20 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email")
+    private String email;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Collection<UserQuestion> answeredQuestions;
 
     public User() { }
-
-    public User(String lastName, String firstName) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-    }
-
-    public User(String lastName, String firstName, Collection<UserQuestion> answeredQuestions) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.answeredQuestions = answeredQuestions;
-    }
 
     public int getId() {
         return id;
@@ -72,5 +70,29 @@ public class User {
 
     public void setAnsweredQuestions(Collection<UserQuestion> answeredQuestions) {
         this.answeredQuestions = answeredQuestions;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

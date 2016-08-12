@@ -2,6 +2,9 @@ create table users (
   id int NOT NULL AUTO_INCREMENT,
   last_name varchar(255) NOT NULL,
   first_name varchar(255),
+  login varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
+  email varchar(255) NOT NULL,
   is_admin boolean,
   PRIMARY KEY(id)
 );
@@ -10,7 +13,7 @@ create table questions (
   id int NOT NULL AUTO_INCREMENT,
   content varchar(1023),
   topic varchar(255),
-  chapter varchar(255),
+  chapter int,
   hint varchar(511),
   correct_answer_id int,
   is_booking_entry boolean,
