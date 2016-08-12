@@ -120,11 +120,12 @@ public class QuestionsController {
     @CrossOrigin(origins = "*")
     @Transactional
     @RequestMapping(value = "/getAllTopics", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Iterable<TopicWrapper> getAllTopics() {
-        String s = "select chapter, topic from questions q " +
+    @ResponseBody
+    public List<Object> getAllTopics() {
+        String s = "select topic from questions q " +
                 "group by chapter, topic order by chapter ASC";
         SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(s);
-        List<TopicWrapper> list = (List<TopicWrapper>)query.list();
+        List<Object> list = query.list();
         return list;
     }
 
