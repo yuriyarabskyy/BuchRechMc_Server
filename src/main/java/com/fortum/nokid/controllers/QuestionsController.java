@@ -105,7 +105,6 @@ public class QuestionsController {
             query.setParameter("user_id", wrapper.getUser_id());
             query.setParameter("question_id", wrapper.getQuestion_id());
             List<UserQuestion> uqList = query.list();
-            System.out.println(uqList.get(0).getId());
             if (!uqList.isEmpty()) uq.setId(uqList.get(0).getId());
 
             if (question.getCorrectAnswerId() == wrapper.getAnswer_id())
