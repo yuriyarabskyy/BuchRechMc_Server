@@ -84,7 +84,7 @@ public class LecturesController {
             lectureDAO.save(lecture);
         } catch (Exception e) { e.printStackTrace(); }
 
-        return "redirect:/lectures/";
+        return "redirect:/api/lectures/";
     }
 
 
