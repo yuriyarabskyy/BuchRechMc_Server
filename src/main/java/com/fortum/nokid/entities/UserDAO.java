@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public interface UserDAO extends CrudRepository<User, Long> {
 
-    User findById(long id);
+    User findById(int id);
 
     List<User> findBylastNameIgnoreCase(String lastName);
 

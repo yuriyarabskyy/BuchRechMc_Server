@@ -1,10 +1,14 @@
 package com.fortum.nokid.controllers;
 
 import com.fortum.nokid.entities.*;
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Entity;
 import java.util.*;
 
 @RequestMapping("/api/questions")
@@ -82,17 +86,29 @@ public class QuestionsController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/answerQuestion", method = RequestMethod.POST)
+    @Transactional
     @ResponseBody
     public String answerQuestion(@RequestBody AnswerQuestionWrapper wrapper) {
         try {
             UserQuestion uq = new UserQuestion();
-            User user = userDAO.findById(wrapper.user_id);
-            Question question = questionDAO.findById(wrapper.question_id);
+            User user = userDAO.findById(wrapper.getUser_id());
+            Question question = questionDAO.findById(wrapper.getQuestion_id());
             uq.setUser(user);
             uq.setQuestion(question);
-            uq.setGivenAnswer(answerDAO.findByQuestionAndAnswerId(question, wrapper.answer_id));
+            uq.setGivenAnswer(answerDAO.findByQuestionAndAnswerId(question, wrapper.getAnswer_id()));
             uq.setTried(true);
-            if (question.getCorrectAnswerId() == wrapper.answer_id)
+
+            String s = "select * from users_questions" +
+                    " where user_id = :user_id and question_id = :question_id";
+            SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(s);
+            query.addEntity(UserQuestion.class);
+            query.setParameter("user_id", wrapper.getUser_id());
+            query.setParameter("question_id", wrapper.getQuestion_id());
+            List<UserQuestion> uqList = query.list();
+            System.out.println(uqList.get(0).getId());
+            if (!uqList.isEmpty()) uq.setId(uqList.get(0).getId());
+
+            if (question.getCorrectAnswerId() == wrapper.getAnswer_id())
                 uq.setCorrectlyAnswered(true);
             else uq.setCorrectlyAnswered(false);
             uqDAO.save(uq);
@@ -115,10 +131,39 @@ public class QuestionsController {
     @Autowired
     private UserQuestionDAO uqDAO;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     public static class AnswerQuestionWrapper {
-        int user_id;
-        int question_id;
-        int answer_id;
+        private int user_id;
+        private int question_id;
+        private int answer_id;
+
+        AnswerQuestionWrapper() { }
+
+        public int getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
+        }
+
+        public int getQuestion_id() {
+            return question_id;
+        }
+
+        public void setQuestion_id(int question_id) {
+            this.question_id = question_id;
+        }
+
+        public int getAnswer_id() {
+            return answer_id;
+        }
+
+        public void setAnswer_id(int answer_id) {
+            this.answer_id = answer_id;
+        }
     }
 
 }
