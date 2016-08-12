@@ -73,9 +73,7 @@ Http Post
 
 Write the content of the question in the body.
 
-# Answer Questions
-
-**/answerQuestion**
+4. **/answerQuestion**
 
 ```json
 {
@@ -84,6 +82,8 @@ Write the content of the question in the body.
   "answer_id": 3
 }
 ```
+
+5. **/getAllTopics** - get all topics
 
 ## Creating users
 
@@ -94,10 +94,25 @@ Relatively to **/users**.
 ```json
 {
   "lastName": "Winchester",
-  "firstName": "Sam"
+  "firstName": "Sam",
+  "login": "daBoss",
+  "password": "secret",
+  "email": "your.email@gmail.com"
 }
 ```
 
 2. **/getUsersByName?lastName=Winchester&firstName=Sam**
 
 Both parameters are not required. For instance you may look for a person only based on the lastName or only on the firstName.
+
+3. **/getAll** - get all users
+
+## Lectures /api/lectures
+
+1. **/getAll** - get all lectures
+
+2. **/getLectureByName?name=Economics** - get a lecture according to it's name
+
+3. **/{filename}** - (GET method) get the lecture
+
+Example: **/Economics.pdf**
