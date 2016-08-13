@@ -34,6 +34,12 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "token")
+    private String token;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Collection<UserQuestion> answeredQuestions;
@@ -94,5 +100,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

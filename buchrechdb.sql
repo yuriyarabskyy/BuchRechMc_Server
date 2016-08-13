@@ -4,7 +4,8 @@ create table users (
   first_name varchar(255),
   password varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
-  is_admin boolean,
+  role varchar(255),
+  token varchar(255) NOT NULL,
   PRIMARY KEY(id)
 );
 
