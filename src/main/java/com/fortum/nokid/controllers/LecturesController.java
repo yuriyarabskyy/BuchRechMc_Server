@@ -43,7 +43,7 @@ public class LecturesController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @RequestMapping(method = RequestMethod.GET, value = "/upload")
     public String provideUploadInfo(Model model) throws IOException {
 
         model.addAttribute("files", Files.walk(Paths.get(ROOT))
@@ -57,7 +57,8 @@ public class LecturesController {
 
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.POST, value = "/")
+    @RequestMapping(method = RequestMethod.POST, value = "/upload")
+    @ResponseBody
     public String handleFileUpload(HttpServletRequest request,
                                    RedirectAttributes redirectAttributes) {
         try {
@@ -87,7 +88,7 @@ public class LecturesController {
             lectureDAO.save(lecture);
         } catch (Exception e) { e.printStackTrace(); }
 
-        return "redirect:/api/lectures/";
+        return "Lecture successfully uploaded";
     }
 
 

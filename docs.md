@@ -1,12 +1,12 @@
 # Put /api/ before every call
 
-## Posting questions
+## Questions
 
 Everything relatively to **/questions**.
 
 HTTP Post method is used
 
-**/pushQuestions**
+1. **/pushQuestions**
 
 Questions are passed in the body, which is a json document. If you want to
 create a new question don't mention the id, it will be automatically
@@ -21,7 +21,6 @@ Example (new version)
 [
   {
     "content": "2+2=?",
-	  "topic": "Weather",
 	  "chapter": 1,
 	  "hint": "No clues here",
     "correctAnswerId": 1,
@@ -39,7 +38,6 @@ Example (new version)
   {
     "id": 1,
     "content": "2+2=?",
-	  "topic": "Weather",
 	  "chapter": 1,
 	  "hint": "No clues here",
     "correctAnswerId": 2,
@@ -52,28 +50,26 @@ Example (new version)
 
 The first element creates a new question in the database and the second one alters the existing question under the id '1'.
 
-## Getting questions
-
-1. **/getAll**
+2. **/getAll**
 
 HTTP Get
 
 ResponseBody is a list of all the questions.
 
-2. **/getById**
+3. **/getById**
 
 Http Post
 
 Body is a comma separated list of ids of the questions you want to get. For
 example: 1,2,3,5,7
 
-3. **/getByContent**
+4. **/getByContent**
 
 Http Post
 
 Write the content of the question in the body.
 
-4. **/answerQuestion**
+5. **/answerQuestion**
 
 ```json
 {
@@ -83,21 +79,33 @@ Write the content of the question in the body.
 }
 ```
 
-5. **/getAllTopics** - get all topics
+## Topics /api/topics
 
-## Creating users
+1. **/getAllTopics** - get all topics
 
-Relatively to **/users**.
+2. **/addTopic** - add new topic (POST)
 
-1. **/create** - post method
+```json
+{
+  "chapter" : 1,
+  "topic" : "Futurism"
+}
+```
+
+## Users
+
+Relatively to **/api/users**.
+
+1. **/register** - (POST) register new user
+
+An email message with a verification url is sent to the specified email address.
 
 ```json
 {
   "lastName": "Winchester",
   "firstName": "Sam",
-  "login": "daBoss",
   "password": "secret",
-  "email": "your.email@gmail.com"
+  "email": "your.email@(my)tum.de"
 }
 ```
 
@@ -107,7 +115,7 @@ Both parameters are not required. For instance you may look for a person only ba
 
 3. **/getAll** - get all users
 
-## Lectures /api/lectures
+## Lectures **/api/lectures**
 
 1. **/getAll** - get all lectures
 
@@ -116,3 +124,8 @@ Both parameters are not required. For instance you may look for a person only ba
 3. **/{filename}** - (GET method) get the lecture
 
 Example: **/Economics.pdf**
+
+4. **Posting new lecture /upload**
+
+  * method="POST" enctype="multipart/form-data"
+  * pdf file,  fromChapter, toChapter
