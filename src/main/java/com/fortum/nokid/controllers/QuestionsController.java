@@ -8,7 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Entity;
 import java.util.*;
 
 @RequestMapping("/api/questions")
@@ -117,18 +116,6 @@ public class QuestionsController {
         return "Success";
     }
 
-    @CrossOrigin(origins = "*")
-    @Transactional
-    @RequestMapping(value = "/getAllTopics", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public List<Object> getAllTopics() {
-        String s = "select topic from questions q " +
-                "group by chapter, topic order by chapter ASC";
-        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(s);
-        List<Object> list = query.list();
-        return list;
-    }
-
     @Autowired
     private UserDAO userDAO;
 
@@ -173,34 +160,6 @@ public class QuestionsController {
 
         public void setAnswer_id(int answer_id) {
             this.answer_id = answer_id;
-        }
-    }
-
-    public static class TopicWrapper {
-        private int chapter;
-        private String topic;
-
-        TopicWrapper() { }
-
-        public TopicWrapper(int chapter, String topic) {
-            this.chapter = chapter;
-            this.topic = topic;
-        }
-
-        public int getChapter() {
-            return chapter;
-        }
-
-        public void setChapter(int chapter) {
-            this.chapter = chapter;
-        }
-
-        public String getTopic() {
-            return topic;
-        }
-
-        public void setTopic(String topic) {
-            this.topic = topic;
         }
     }
 

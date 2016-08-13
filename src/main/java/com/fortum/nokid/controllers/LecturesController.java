@@ -4,6 +4,7 @@ import com.fortum.nokid.entities.Lecture;
 import com.fortum.nokid.entities.LectureDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -121,8 +121,9 @@ public class LecturesController {
 
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value="/getAll", method = RequestMethod.GET)
-    public Iterable<Lecture> getAll() {
+    @RequestMapping(value="/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseBody
+    Iterable<Lecture> getAll() {
         return lectureDAO.findAll();
     }
 

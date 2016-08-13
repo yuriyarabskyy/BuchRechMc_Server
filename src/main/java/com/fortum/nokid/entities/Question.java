@@ -23,9 +23,6 @@ public class Question implements Serializable {
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     private List<Answer> possibleAnswers;
 
-    @Column(name="topic")
-    private String topic;
-
     @Column(name="chapter")
     private int chapter;
 
@@ -77,14 +74,6 @@ public class Question implements Serializable {
 
     public void setPossibleAnswers(List<Answer> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
-    }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
     }
 
     public int getChapter() { return chapter; }
