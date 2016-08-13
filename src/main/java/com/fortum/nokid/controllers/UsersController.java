@@ -2,8 +2,11 @@ package com.fortum.nokid.controllers;
 
 import com.fortum.nokid.entities.User;
 import com.fortum.nokid.entities.UserDAO;
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.Message;
@@ -33,8 +36,14 @@ public class UsersController {
     private Pattern emailPattern = Pattern.compile(TUM_EMAIL_PATTERN);
     private Matcher matcher;
 
+    private static final String UNVERIFIED = "unverified";
+    private static final String USER = "user";
+
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private SessionFactory sessionFactory;
 
 
     @CrossOrigin(origins = "*")
@@ -44,7 +53,7 @@ public class UsersController {
 
             matcher = emailPattern.matcher(user.getEmail());
 
-            if (!matcher.matches()) {
+            if (matcher.matches()) {
 
                 String token = UUID.randomUUID().toString();
 
@@ -69,11 +78,13 @@ public class UsersController {
                 message.setSubject("Registration - Buchrechnung");
 
                 message.setText("Register your user by clicking on this link:" +
-                        " http://localhost:8080/api/users/verify?token=" + token);
+                        " http://85.214.195.89:8080/api/users/verify?token=" + token);
 
                 Transport.send(message);
 
                 user.setToken(token);
+
+                user.setRole(UNVERIFIED);
 
                 userDAO.save(user);
 
@@ -85,6 +96,28 @@ public class UsersController {
         }
 
         return "Email didn't match";
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/verify", method = RequestMethod.GET)
+    @Transactional
+    @ResponseBody
+    public String verify(@RequestParam("token") String token) {
+
+        String sql = "select * from users where token = :token";
+
+        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
+        query.addEntity(User.class);
+        query.setParameter("token", token);
+
+        List<User> users = query.list();
+
+        if (users.isEmpty()) return "Verification error";
+
+        users.get(0).setRole(USER);
+
+        return "Verification success";
+
     }
 
     @CrossOrigin(origins = "*")

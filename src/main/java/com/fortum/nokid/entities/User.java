@@ -25,9 +25,6 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "login")
-    private String login;
-
     @Column(name = "password")
     private String password;
 
@@ -76,14 +73,6 @@ public class User {
 
     public void setAnsweredQuestions(Collection<UserQuestion> answeredQuestions) {
         this.answeredQuestions = answeredQuestions;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {
