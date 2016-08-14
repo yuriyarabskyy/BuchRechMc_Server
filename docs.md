@@ -129,3 +129,5 @@ Example: **/Economics.pdf**
 
   * method="POST" enctype="multipart/form-data"
   * pdf file,  fromChapter, toChapter
+
+5. **/getQuestions?page=123"** - get questions to the selected page
