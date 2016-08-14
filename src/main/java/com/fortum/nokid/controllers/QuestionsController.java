@@ -68,6 +68,7 @@ public class QuestionsController {
 
         try {
             questionDAO.save(questions);
+            lecturesController.addToMap(questions);
             for (Question q : questions) {
                 for (Answer a : q.getPossibleAnswers()) {
                     a.setQuestion(q);
@@ -130,6 +131,9 @@ public class QuestionsController {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private LecturesController lecturesController;
 
     public static class AnswerQuestionWrapper {
         private int user_id;

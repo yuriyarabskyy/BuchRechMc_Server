@@ -2,11 +2,16 @@ package com.fortum.nokid.controllers;
 
 import com.fortum.nokid.entities.Lecture;
 import com.fortum.nokid.entities.LectureDAO;
+import com.fortum.nokid.entities.Question;
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -35,11 +44,36 @@ public class LecturesController {
 
     private final ResourceLoader resourceLoader;
 
+    private Map<Integer, ArrayList<Question>> pageQuestionMap = new HashMap<>();
+
     public static final String ROOT = "upload-dir";
 
     @Autowired
     public LecturesController(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
+    }
+
+    public void addToMap(List<Question> list) {
+        for (Question q : list) {
+            for (int i = q.getFromPage(); i <= q.getToPage(); i++) {
+
+                if (pageQuestionMap.get(i) != null) {
+                    pageQuestionMap.get(i).add(q);
+                }
+                else {
+                    ArrayList<Question> questions = new ArrayList<>();
+                    questions.add(q);
+                    pageQuestionMap.put(i, questions);
+                }
+            }
+        }
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.GET, value = "/getQuestions", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ResponseBody
+    public List<Question> getQuestions(@RequestParam("page")int page) {
+        return pageQuestionMap.get(page);
     }
 
     @CrossOrigin(origins = "*")

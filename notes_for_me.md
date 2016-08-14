@@ -70,7 +70,12 @@ lectures
 
 question - getAllTopics
 
+# Questions
 
+Cookies : how exactly do they work? Who generates the session token? How does
+the server save the session tokens for each use? Is JSESSIONID that exact token?
+How exactly does a CSRF attack work? And in what way does this X-XSRF-TOKEN offer
+protection?
 
 # Lessons learned
 
