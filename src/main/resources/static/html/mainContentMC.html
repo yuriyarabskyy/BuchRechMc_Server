@@ -1,0 +1,39 @@
+<div class="row">
+
+    <div class="container">
+            <div class="card-panel">
+            <h5 class="center-align" id="content">{{actualQuestion.content}}</h5>
+            </div>
+            <div class="card-panel">
+            <div class="collection">
+                <a href="#!" class="collection-item" id="answerA">{{actualQuestion.possibleAnswers[0].answer}}</a>
+                <a href="#!" class="collection-item" id="answerB">{{actualQuestion.possibleAnswers[1].answer}}</a>
+                <a href="#!" class="collection-item" id="answerC">{{actualQuestion.possibleAnswers[2].answer}}</a>
+                <a href="#!" class="collection-item" id="answerD">{{actualQuestion.possibleAnswers[3].answer}}</a>
+            </div>
+            </div>
+
+        <div ng-show="data.user.isAdmin"  class="row">
+            <div class="col s4 left-align">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">skip_previous</i>Previous</a>
+            </div>
+            <div class="col s4 center-align">
+                <a class="waves-effect waves-light btn" id="editButton">Edit</a>
+            </div>
+            <div class="col s4 right-align">
+                <a class="waves-effect waves-light btn"><i class="material-icons right">skip_next</i>Next</a>
+            </div>
+        </div>
+
+        <div ng-show="!data.user.isAdmin" class="row">
+            <div class="col s6 left-align">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">skip_previous</i>Previous</a>
+            </div>
+            <div class="col s6 right-align">
+                <a class="waves-effect waves-light btn"><i class="material-icons right">skip_next</i>Next</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
