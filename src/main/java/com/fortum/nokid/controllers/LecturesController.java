@@ -48,9 +48,24 @@ public class LecturesController {
 
     public static final String ROOT = "upload-dir";
 
+    private boolean firstTime = true;
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Autowired
     public LecturesController(ResourceLoader resourceLoader) {
+
         this.resourceLoader = resourceLoader;
+
+    }
+
+    @Transactional
+    private List<Question> scanQuestions() {
+        String sql = "select * from questions";
+        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
+        query.addEntity(Question.class);
+        return query.list();
     }
 
     public void addToMap(List<Question> list) {
@@ -58,7 +73,15 @@ public class LecturesController {
             for (int i = q.getFromPage(); i <= q.getToPage(); i++) {
 
                 if (pageQuestionMap.get(i) != null) {
-                    pageQuestionMap.get(i).add(q);
+                    List<Question> qList = pageQuestionMap.get(i);
+                    boolean doesntExist = true;
+                    for (Question question : qList) {
+                        if (question.equals(q)) {
+                            doesntExist = false;
+                            break;
+                        }
+                    }
+                    if (doesntExist) qList.add(q);
                 }
                 else {
                     ArrayList<Question> questions = new ArrayList<>();
@@ -73,7 +96,14 @@ public class LecturesController {
     @RequestMapping(method = RequestMethod.GET, value = "/getQuestions", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public List<Question> getQuestions(@RequestParam("page")int page) {
+
+        if (firstTime) {
+            addToMap(scanQuestions());
+            firstTime = false;
+        }
+
         return pageQuestionMap.get(page);
+
     }
 
     @CrossOrigin(origins = "*")

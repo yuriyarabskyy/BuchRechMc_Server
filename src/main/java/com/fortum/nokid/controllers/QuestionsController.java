@@ -64,6 +64,7 @@ public class QuestionsController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/pushQuestions", method = RequestMethod.POST)
     @ResponseBody
+    @Transactional
     public String pushQuestions(@RequestBody List<Question> questions) {
 
         try {
@@ -72,6 +73,16 @@ public class QuestionsController {
             for (Question q : questions) {
                 for (Answer a : q.getPossibleAnswers()) {
                     a.setQuestion(q);
+
+                    String sql = "select * from answers where question_id = :q_id and answer_id = :a_id";
+                    SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
+                    query.addEntity(Answer.class);
+                    query.setParameter("q_id", q.getId());
+                    query.setParameter("a_id", a.getAnswerId());
+                    List<Answer> list = query.list();
+
+                    if (!list.isEmpty())  a.setId(list.get(0).getId());
+
                     answerDAO.save(a);
                 }
             }

@@ -129,4 +129,12 @@ public class Question implements Serializable {
     public void setUserQuestions(List<UserQuestion> userQuestions) {
         this.userQuestions = userQuestions;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (!(o instanceof Question)) return false;
+        Question q = (Question)o;
+        return q.getId() == id;
+    }
 }
