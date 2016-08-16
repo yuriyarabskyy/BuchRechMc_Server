@@ -4,9 +4,19 @@ create table users (
   first_name varchar(255),
   password varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
-  role varchar(255),
+  enabled TINYINT NOT NULL DEFAULT 0,
   token varchar(255) NOT NULL,
+  UNIQUE KEY uni_email (email),
   PRIMARY KEY(id)
+);
+
+CREATE TABLE user_roles (
+  user_role_id int(11) NOT NULL AUTO_INCREMENT,
+  email varchar(45) NOT NULL,
+  role varchar(45) NOT NULL,
+  PRIMARY KEY (user_role_id),
+  UNIQUE KEY uni_email_role (role,email),
+  CONSTRAINT fk_username FOREIGN KEY (email) REFERENCES users(email)
 );
 
 create table topics (
@@ -21,7 +31,7 @@ create table questions (
   chapter int,
   hint varchar(511),
   correct_answer_id int,
-  is_booking_entry boolean,
+  is_booking_entry TINYINT,
   from_page int NOT NULL,
   to_page int NOT NULL,
   PRIMARY KEY(id)

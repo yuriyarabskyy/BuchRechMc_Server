@@ -95,6 +95,7 @@ public class LecturesController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/getQuestions", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
+    @Transactional
     public List<Question> getQuestions(@RequestParam("page")int page) {
 
         if (firstTime) {

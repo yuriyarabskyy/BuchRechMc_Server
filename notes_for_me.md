@@ -77,6 +77,10 @@ the server save the session tokens for each use? Is JSESSIONID that exact token?
 How exactly does a CSRF attack work? And in what way does this X-XSRF-TOKEN offer
 protection?
 
+// TODO
+
+1. Change the role to enabled in the users class!
+
 # Lessons learned
 
 ```java
