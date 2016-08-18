@@ -4,7 +4,9 @@ import com.fortum.nokid.entities.*;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,7 +67,7 @@ public class QuestionsController {
     @RequestMapping(value = "/pushQuestions", method = RequestMethod.POST)
     @ResponseBody
     @Transactional
-    public String pushQuestions(@RequestBody List<Question> questions) {
+    public ResponseEntity<String> pushQuestions(@RequestBody List<Question> questions) {
 
         try {
             questionDAO.save(questions);
@@ -88,10 +90,10 @@ public class QuestionsController {
             }
         }
         catch(Exception ex) {
-            return "Something went horribly wrong";
+            return new ResponseEntity<>("Something went horribly wrong", HttpStatus.BAD_REQUEST);
         }
 
-        return "Successfully saved your questions";
+        return new ResponseEntity<>("Successfully saved your questions", HttpStatus.OK);
 
     }
 

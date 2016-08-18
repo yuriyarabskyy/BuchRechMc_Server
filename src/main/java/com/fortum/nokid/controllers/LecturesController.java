@@ -124,7 +124,7 @@ public class LecturesController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
     @ResponseBody
-    public String handleFileUpload(HttpServletRequest request,
+    public ResponseEntity<?> handleFileUpload(HttpServletRequest request,
                                    RedirectAttributes redirectAttributes) {
         try {
 
@@ -137,23 +137,25 @@ public class LecturesController {
             if (!file.isEmpty()) {
                 try {
                     Files.copy(file.getInputStream(), Paths.get(ROOT, file.getOriginalFilename()));
-                    redirectAttributes.addFlashAttribute("message",
-                            "You successfully uploaded " + file.getOriginalFilename() + "!");
+                    //redirectAttributes.addFlashAttribute("message",
+                     //       "You successfully uploaded " + file.getOriginalFilename() + "!");
                     lecture.setName(file.getOriginalFilename());
                 } catch (IOException | RuntimeException e) {
-                    redirectAttributes.addFlashAttribute("message", "Failued to upload " + file.getOriginalFilename() + " => " + e.getMessage());
+                    //redirectAttributes.addFlashAttribute("message", "Failued to upload " + file.getOriginalFilename() + " => " + e.getMessage());
+                    ResponseEntity.badRequest();
                 }
             } else {
-                redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was empty");
+               // redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was empty");
+                ResponseEntity.badRequest();
             }
 
             lecture.setStartChapter(Integer.parseInt(mrequest.getParameter("startChapter")));
             lecture.setEndChapter(Integer.parseInt(mrequest.getParameter("endChapter")));
 
             lectureDAO.save(lecture);
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) { ResponseEntity.badRequest(); }
 
-        return "Lecture successfully uploaded";
+        return ResponseEntity.ok("Lecture successfully uploaded");
     }
 
 

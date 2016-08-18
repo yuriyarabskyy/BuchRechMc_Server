@@ -5,7 +5,9 @@ import com.fortum.nokid.entities.TopicDAO;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,11 +42,11 @@ public class TopicsController {
     @CrossOrigin(origins = "*")
     @ResponseBody
     @RequestMapping(value = "/addTopic", method = RequestMethod.POST)
-    public String addTopic(@RequestBody Topic topic) {
+    public ResponseEntity<?> addTopic(@RequestBody Topic topic) {
         try {
             topicDAO.save(topic);
-        } catch (Exception e) { return "Exception adding topic"; }
-        return "Success adding topic";
+            return ResponseEntity.ok("Successfully added new topic");
+        } catch (Exception e) { return new ResponseEntity<>("Exception adding topic", HttpStatus.BAD_REQUEST); }
     }
 
 }
