@@ -130,4 +130,4 @@ Example: **/Economics.pdf**
   * method="POST" enctype="multipart/form-data"
   * pdf file,  fromChapter, toChapter
 
-5. **/getQuestions?page=123"** - get questions to the selected page
+5. **/getQuestions?page=123&chapter=1** - get questions to the selected page and chapter

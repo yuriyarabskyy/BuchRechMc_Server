@@ -97,14 +97,23 @@ public class LecturesController {
     @RequestMapping(method = RequestMethod.GET, value = "/getQuestions", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     @Transactional
-    public List<Question> getQuestions(@RequestParam("page")int page) {
+    public List<Question> getQuestions(@RequestParam("page")int page,
+                                       @RequestParam(value = "chapter", required = false)int chapter) {
 
         if (firstTime) {
             addToMap(scanQuestions());
             firstTime = false;
         }
 
-        return pageQuestionMap.get(page);
+        List<Question> list = pageQuestionMap.get(page);
+
+        if (chapter != 0) {
+            list.stream()
+                    .filter(question -> question.getChapter() == chapter)
+                    .collect(Collectors.toList());
+        }
+
+        return list;
 
     }
 
