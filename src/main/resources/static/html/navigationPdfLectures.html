@@ -21,7 +21,7 @@
         <ul class="collapsible" data-collapsible="accordion">
             <!--Lecture Header-->
             <li ng-repeat="lecture in getRangeForLectures() track by $index" ng-click="goToLecture(lecture)">
-                <div class="collapsible-header"><i class="material-icons">turned_in</i>{{lecture.title}}</div>
+                <div class="collapsible-header"><i class="material-icons">turned_in</i>{{lecture.name}}</div>
             </li><!--End of Lecture Header-->
         </ul>
 </ul>

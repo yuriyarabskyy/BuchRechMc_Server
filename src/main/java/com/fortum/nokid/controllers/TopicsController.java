@@ -45,8 +45,8 @@ public class TopicsController {
     public ResponseEntity<?> addTopic(@RequestBody Topic topic) {
         try {
             topicDAO.save(topic);
-            return ResponseEntity.ok("Successfully added new topic");
-        } catch (Exception e) { return new ResponseEntity<>("Exception adding topic", HttpStatus.BAD_REQUEST); }
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception e) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
     }
 
 }

@@ -90,10 +90,10 @@ public class QuestionsController {
             }
         }
         catch(Exception ex) {
-            return new ResponseEntity<>("Something went horribly wrong", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>("Successfully saved your questions", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
     }
 
@@ -101,7 +101,7 @@ public class QuestionsController {
     @RequestMapping(value = "/answerQuestion", method = RequestMethod.POST)
     @Transactional
     @ResponseBody
-    public String answerQuestion(@RequestBody AnswerQuestionWrapper wrapper) {
+    public ResponseEntity<?> answerQuestion(@RequestBody AnswerQuestionWrapper wrapper) {
         try {
             UserQuestion uq = new UserQuestion();
             User user = userDAO.findById(wrapper.getUser_id());
@@ -125,9 +125,9 @@ public class QuestionsController {
             else uq.setCorrectlyAnswered(false);
             uqDAO.save(uq);
         } catch (Exception e) {
-            return "Something went wrong";
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return "Success";
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @Autowired

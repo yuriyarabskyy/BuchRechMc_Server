@@ -1,7 +1,23 @@
 <div class="row">
     <div class="container">
         <div class="wrapper">
-            <ng-pdf template-url="html/pdfViewer.html"></ng-pdf>
+
+            <ng-pdf ng-show="isLoaded" template-url="html/pdfViewer.html"></ng-pdf>
+
+            <hr>
+                <div ng-show="!isLoaded" class="preloader-wrapper big active center-align">
+                    <div class="spinner-layer spinner-green-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+
+            <my-question ng-show="showQuestionForPage" question="actualQuestion" user="data.user"></my-question>
         </div>
     </div>
 </div>

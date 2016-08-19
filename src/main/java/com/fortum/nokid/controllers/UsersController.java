@@ -5,7 +5,9 @@ import com.fortum.nokid.entities.UserDAO;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,7 +50,7 @@ public class UsersController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String create(@RequestBody User user) {
+    public ResponseEntity<?> create(@RequestBody User user) {
         try {
 
             matcher = emailPattern.matcher(user.getEmail());
@@ -88,21 +90,21 @@ public class UsersController {
 
                 userDAO.save(user);
 
-                return "Success creating user with id: " + user.getId();
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
 
         } catch (Exception e) {
-            return "Error creating the user";
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return "Email didn't match";
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
     @Transactional
     @ResponseBody
-    public String verify(@RequestParam("token") String token) {
+    public ResponseEntity<?> verify(@RequestParam("token") String token) {
 
         String sql = "select * from users where token = :token";
 
@@ -112,11 +114,11 @@ public class UsersController {
 
         List<User> users = query.list();
 
-        if (users.isEmpty()) return "Verification error";
+        if (users.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         users.get(0).setRole(USER);
 
-        return "Verification success";
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
     }
 

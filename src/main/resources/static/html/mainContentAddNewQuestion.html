@@ -36,7 +36,7 @@
                     <div class="row">
                         <!--Dropdown for rightAnswerIndex-->
                         <div class="input-field col s4">
-                            <select ng-model="newQuestion.correctAnswerId" required>
+                            <select ng-model="newQuestion.correctAnswerId" required material-select watch>
                                 <option ng-value="-1" disabled selected>Choose your option</option>
                                 <option ng-value="0">A</option>
                                 <option ng-value="1">B</option>
@@ -45,14 +45,18 @@
                             </select>
                             <label>Which answer is right</label>
                         </div>
-                        <script> $('select').material_select();</script>
+
                         <!-- End Dropdown for rightAnswerIndex-->
 
-                        <!-- Input for chapter-->
-                        <div class="input-field col s2">
-                            <input ng-model="newQuestion.chapter" id="chapter" type="number" class="validate" required>
-                            <label for="chapter">Chapter</label>
-                        </div> <!-- End Input for chapter-->
+                        <!-- Dropdown for topic-->
+                        <div class="input-field col s4">
+                            <select ng-model="newQuestion.topic" required material-select watch>
+                                <option ng-value="-1" disabled selected>Choose your option</option>
+                                <option ng-repeat="topic in getAllTopics() track by $index" ng-value="$index">{{topic}}</option>
+                            </select>
+                            <label>Which topic is it?</label>
+
+                        </div> <!-- End Input for Topic-->
 
                         <!--Checkbox for Booking entry-->
                         <div class="input-field col s4">
@@ -80,10 +84,63 @@
             </div>
         </div>
 
+        <!--Add New Topic-->
+        <div class="card-panel">
+            <h2 style="font-family:sans-serif; color:darkseagreen;" class="header">Add new Topic</h2>
+            <div class="row">
+                <form ng-submit="onSubmitTopic()" name='addNewTopicForm' class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input ng-model="newTopic.topic" name="topic" id="topic" type="text" class="validate" required>
+                            <label for="topic">Topic</label>
 
-        <div class="row">
-
+                        </div>
+                        <div class="input-field col s6">
+                            <input ng-model="newTopic.chapter" id="chapter" type="number" class="validate" required>
+                            <label for="chapter">Chapter Number</label>
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <input type="submit" value="Save" ng-disabled="addNewTopicForm.$error.required[0].$error.required" class="waves-effect waves-light btn"/>
+                    </div>
+                </form>
+            </div>
         </div>
 
+        <div class="card-panel">
+            <h2 style="font-family:sans-serif; color:darkseagreen;" class="header">Add new Lecture</h2>
+            <div class="row">
+<!--TODO delete server url from form-->
+                <form action="http://85.214.195.89:8080/api/lectures/upload" enctype="multipart/form-data" name='addNewLectureForm' method="POST" class="col s12">
+
+                    <div class="row">
+                        <div class="file-field input-field col s12 center-align">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" id="lectureFileInput" name="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input ng-model="newLecture.startChapter" name="startChapter" id="startChapter" type="number" class="validate" required>
+                            <label for="chapter">Start chapter</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input ng-model="newLecture.endChapter" name="endChapter" id="endChapter" type="number" class="validate" required>
+                            <label for="chapter">End chapter</label>
+                        </div>
+                    </div>
+
+                    <div class="col s12 center-align">
+                        <input type="submit" value="Save" ng-disabled="addNewLectureForm.$error.required[0].$error.required" class="waves-effect waves-light btn"/>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

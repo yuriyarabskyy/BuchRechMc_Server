@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -124,8 +125,8 @@ public class LecturesController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
     @ResponseBody
-    public ResponseEntity<?> handleFileUpload(HttpServletRequest request,
-                                   RedirectAttributes redirectAttributes) {
+    public ResponseEntity<?> handleFileUpload(HttpServletRequest request){
+                                   //RedirectAttributes redirectAttributes) {
         try {
 
             MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
@@ -155,7 +156,7 @@ public class LecturesController {
             lectureDAO.save(lecture);
         } catch (Exception e) { ResponseEntity.badRequest(); }
 
-        return ResponseEntity.ok("Lecture successfully uploaded");
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 

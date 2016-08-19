@@ -25,7 +25,7 @@
                 <div class="collapsible-body">
                     <ul>
                         <!--Kapitel Questions-->
-                        <li ng-repeat="question in data.questions|filter:{topic:topic}"><a ng-click="goToQuestion(question)" class="truncate">{{question.content}}</a></li>
+                        <li ng-repeat="question in data.questions|filter:{chapter:$index}"><a ng-click="goToQuestion(question)" class="truncate">{{question.content}}</a></li>
                     </ul>
                 </div>
             </li><!--End of Kapitel Header-->
