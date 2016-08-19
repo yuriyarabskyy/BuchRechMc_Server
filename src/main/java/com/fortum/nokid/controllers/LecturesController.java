@@ -106,14 +106,14 @@ public class LecturesController {
         }
 
         List<Question> list = pageQuestionMap.get(page);
-
+        List<Question> result = null;
         if (chapter != null) {
-            list.stream()
+            result = list.stream()
                     .filter(question -> question.getChapter() == chapter)
                     .collect(Collectors.toList());
         }
 
-        return list;
+        return result;
 
     }
 
