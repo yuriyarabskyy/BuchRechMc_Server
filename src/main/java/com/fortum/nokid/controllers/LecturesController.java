@@ -98,7 +98,7 @@ public class LecturesController {
     @ResponseBody
     @Transactional
     public List<Question> getQuestions(@RequestParam("page")int page,
-                                       @RequestParam(value = "chapter", required = false)int chapter) {
+                                       @RequestParam(value = "chapter", required = false)Integer chapter) {
 
         if (firstTime) {
             addToMap(scanQuestions());
@@ -107,7 +107,7 @@ public class LecturesController {
 
         List<Question> list = pageQuestionMap.get(page);
 
-        if (chapter != 0) {
+        if (chapter != null) {
             list.stream()
                     .filter(question -> question.getChapter() == chapter)
                     .collect(Collectors.toList());
