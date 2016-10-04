@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-@ComponentScan
+@ComponentScan("com.fortum.nokid")
 @EnableGlobalAuthentication
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -45,13 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().and()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/login", "/", "/user", "/home").permitAll()
+                .antMatchers("/", "/login", "/home", "/index.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
-
+/*
     @Bean(name = "DataSource")
     public DataSource restDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
@@ -60,5 +60,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         dataSource.setUsername("root");
         dataSource.setPassword("123654");
         return dataSource;
-    }
+    }*/
 }
