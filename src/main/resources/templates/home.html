@@ -7,23 +7,22 @@
 
     <link rel="stylesheet" href="css/loginPageStyle.css"> </link>
     <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
 </head>
 
-<body ng-app="brmApp">
+<body ng-app="brmLoginApp">
 
 <div class="login-page" ng-controller="LoginCtrl">
     <div class="form">
         <form class="register-form">
-            <input ng-model="nameRegistration" type="text" placeholder="name"/>
-            <input ng-model="passwordRegistration" type="password" placeholder="password"/>
-            <input ng-model="emailRegistration" type="text" placeholder="email"/>
-            <button ng-click="register()">create</button>
+            <input ng-model="credentials.firstName" name="firstName" type="text" placeholder="First Name"/>
+            <input ng-model="credentials.password" type="password" placeholder="password"/>
+            <input ng-model="credentials.email" type="text" placeholder="email"/>
+            <button ng-click="register()" type="button">create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
+
         <form class="login-form" action="/login" method="post">
             <input ng-model="emailLogin" id="username" name="username"  type="text" placeholder="email"/>
             <input ng-model="passwordLogin" id="password" name="password" type="password" placeholder="password"/>
@@ -36,6 +35,26 @@
 <script>
     $('.message a').click(function(){
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
+</script>
+
+<script>
+    var brmLoginApp = angular.module("brmLoginApp",[]);
+    brmLoginApp.controller("LoginCtrl",function ($scope, $http){
+        $scope.credentials={};
+        $scope.register=function(){
+            var data = $scope.credentials;
+            console.log(data);
+            $http({
+                method: 'POST',
+                url: "/register",
+                data: data
+            }).success(function (data, status) {
+                console.log("Success"+data);
+            }).error(function (error) {
+                console.log(error);
+            })
+        };
     });
 </script>
 </body>
