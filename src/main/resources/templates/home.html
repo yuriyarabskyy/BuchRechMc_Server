@@ -47,7 +47,7 @@
             console.log(data);
             $http({
                 method: 'POST',
-                url: "/register",
+                url: $scope.servUrl+"/api/users/register",
                 data: data
             }).success(function (data, status) {
                 console.log("Success"+data);
