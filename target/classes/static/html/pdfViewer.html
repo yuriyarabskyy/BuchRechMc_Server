@@ -1,0 +1,25 @@
+<hr>
+
+<nav class="green lighten-1" ng-class="getNavStyle(scroll)">
+    <div class="nav-wrapper">
+        <ul class="hide-on-med-and-down">
+            <li><a ng-click="goPrevious();onPageChange(pageNum)" ><i class="material-icons">skip_previous</i></a></li>
+            <li><a ng-click="goNext();onPageChange(pageNum)"><i class="material-icons">skip_next</i></a></li>
+            <li><a ng-click="zoomIn()"><i class="material-icons">zoom_in</i></a></li>
+            <li><a ng-click="fit()"><i class="material-icons">settings_overscan</i></a></li>
+            <li><a ng-click="zoomOut()"><i class="material-icons">zoom_out</i></a></li>
+        </ul>
+    </div>
+
+    &nbsp;&nbsp;
+</nav>
+<div class="row">
+    <div class="input-field col s12">
+        <input ng-model="pageNum" id="pageNumInput" type="number" class="validate">
+        <label for="pageNumInput">Page Number</label>
+    </div>
+</div>
+
+<hr>
+
+<canvas id="pdf-canvas"></canvas>
