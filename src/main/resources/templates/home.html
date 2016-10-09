@@ -6,8 +6,8 @@
     <title>BRM Login</title>
 
     <link rel="stylesheet" href="css/loginPageStyle.css"> </link>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 
@@ -24,10 +24,10 @@
             <button ng-click="register()">create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
-        <form class="login-form">
-            <input ng-model="emailLogin"  type="text" placeholder="email"/>
-            <input ng-model="passwordLogin" type="password" placeholder="password"/>
-            <button ng-click="login()">login</button>
+        <form class="login-form" action="/login" method="post">
+            <input ng-model="emailLogin" id="username" name="username"  type="text" placeholder="email"/>
+            <input ng-model="passwordLogin" id="password" name="password" type="password" placeholder="password"/>
+            <button>login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>
     </div>

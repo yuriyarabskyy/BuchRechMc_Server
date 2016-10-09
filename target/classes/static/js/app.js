@@ -14,7 +14,7 @@ var brmApp = angular.module("brmApp",['ui.materialize','pdf','ui.router']);
 
 //Router Provider
 brmApp.config(function ($stateProvider,$urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/questions');
 
     $stateProvider
         .state('home',{
@@ -173,7 +173,7 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 
 });
 
-brmApp.controller("LoginCtrl",function ($location,$rootScope,$scope, $http) {
+brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
     $scope.servUrl="http://localhost:8080";
 
     var authenticate = function(credentials, callback) {
@@ -219,6 +219,9 @@ brmApp.controller("LoginCtrl",function ($location,$rootScope,$scope, $http) {
                 self.error = true;
             }
         });
+    };
+    $scope.testHelloOutput=function(){
+      console.log("Hello");
     };
 
     self.logout = function() {
