@@ -2,6 +2,8 @@ package com.fortum.nokid.controllers;
 
 import com.fortum.nokid.entities.User;
 import com.fortum.nokid.entities.UserDAO;
+import com.fortum.nokid.entities.UserRole;
+import com.fortum.nokid.entities.UserRoleDAO;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,9 @@ public class UsersController {
     private UserDAO userDAO;
 
     @Autowired
+    private UserRoleDAO userRoleDAO;
+
+    @Autowired
     private SessionFactory sessionFactory;
 
 
@@ -86,8 +91,6 @@ public class UsersController {
 
                 user.setToken(token);
 
-                user.setRole(UNVERIFIED);
-
                 userDAO.save(user);
 
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
@@ -116,7 +119,13 @@ public class UsersController {
 
         if (users.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        users.get(0).setRole(USER);
+        UserRole userRole = new UserRole();
+
+        userRole.setEmail(users.get(0).getEmail());
+
+        userRole.setRole(USER);
+
+        userRoleDAO.save(userRole);
 
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
