@@ -140,7 +140,6 @@ public class UsersController {
         userRoleDAO.save(userRole);
         session.getTransaction().commit();
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
-
     }
 
     @CrossOrigin(origins = "*")
