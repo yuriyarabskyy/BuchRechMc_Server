@@ -6,6 +6,7 @@ import com.fortum.nokid.entities.UserRole;
 import com.fortum.nokid.entities.UserRoleDAO;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +19,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -54,6 +57,7 @@ public class UsersController {
 
 
     @CrossOrigin(origins = "*")
+    @Transactional
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody User user) {
         try {
