@@ -6,6 +6,7 @@ import com.fortum.nokid.entities.UserRole;
 import com.fortum.nokid.entities.UserRoleDAO;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -129,9 +130,10 @@ public class UsersController {
         userRole.setEmail(users.get(0).getEmail());
 
         userRole.setRole(USER);
-
+        sessionFactory.getCurrentSession().close();
+        StatelessSession statelessSession = sessionFactory.openStatelessSession();
         userRoleDAO.save(userRole);
-
+        statelessSession.close();
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
     }
