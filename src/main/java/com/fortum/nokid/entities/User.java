@@ -34,6 +34,9 @@ public class User {
     @Column(name = "token")
     private String token;
 
+    @Column(name = "enabled")
+    private boolean enabled;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Collection<UserQuestion> answeredQuestions;
@@ -94,5 +97,13 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

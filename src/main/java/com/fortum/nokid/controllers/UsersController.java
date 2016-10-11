@@ -46,7 +46,7 @@ public class UsersController {
     private Matcher matcher;
 
     private static final String UNVERIFIED = "unverified";
-    private static final String USER = "user";
+    private static final String USER = "ROLE_USER";
 
     @Autowired
     private HibernateTransactionManager tr;
@@ -99,6 +99,7 @@ public class UsersController {
                 Transport.send(message);
 
                 user.setToken(token);
+                user.setEnabled(true);
 
                 userDAO.save(user);
 
