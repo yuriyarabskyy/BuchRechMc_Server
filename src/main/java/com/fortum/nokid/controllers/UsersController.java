@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +47,9 @@ public class UsersController {
 
     private static final String UNVERIFIED = "unverified";
     private static final String USER = "user";
+
+    @Autowired
+    private HibernateTransactionManager tr;
 
     @Autowired
     private UserDAO userDAO;
@@ -115,6 +118,8 @@ public class UsersController {
     @ResponseBody
     public ResponseEntity<?> verify(@RequestParam("token") String token) {
 
+        org.hibernate.Session session = tr.getSessionFactory().openSession();
+        session.beginTransaction();
         String sql = "select * from users where token = :token";
 
         SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
@@ -124,16 +129,16 @@ public class UsersController {
         List<User> users = query.list();
 
         if (users.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
+        session.getTransaction().commit();
         UserRole userRole = new UserRole();
 
         userRole.setEmail(users.get(0).getEmail());
 
         userRole.setRole(USER);
-        sessionFactory.getCurrentSession().close();
-        StatelessSession statelessSession = sessionFactory.openStatelessSession();
+
+        session.beginTransaction();
         userRoleDAO.save(userRole);
-        statelessSession.close();
+        session.getTransaction().commit();
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
     }
