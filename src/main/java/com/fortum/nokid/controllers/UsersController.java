@@ -4,6 +4,8 @@ import com.fortum.nokid.entities.User;
 import com.fortum.nokid.entities.UserDAO;
 import com.fortum.nokid.entities.UserRole;
 import com.fortum.nokid.entities.UserRoleDAO;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.StatelessSession;
@@ -16,17 +18,16 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.UUID;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -79,6 +80,9 @@ public class UsersController {
 
                 String host = "localhost";
 
+                String messageBody = "Register your user by clicking on this link:" +
+                        " http://85.214.195.89:8080/api/users/verify?token=" + token;
+
                 Properties properties = System.getProperties();
 
                 properties.setProperty("mail.smtp.host", host);
@@ -93,8 +97,28 @@ public class UsersController {
 
                 message.setSubject("Registration - Buchrechnung");
 
-                message.setText("Register your user by clicking on this link:" +
-                        " http://85.214.195.89:8080/api/users/verify?token=" + token);
+                BodyPart body = new MimeBodyPart();
+
+                Configuration cfg = new Configuration();
+                Template template = cfg.getTemplate("html-mail-template.ftl");
+                Map<String, String> rootMap = new HashMap<>();
+                rootMap.put("to", to);
+                rootMap.put("body", messageBody);
+                rootMap.put("from", "BuchrechMC Group");
+                Writer out = new StringWriter();
+                template.process(rootMap, out);
+
+
+                body.setContent(out.toString(), "text/html");
+
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(body);
+
+
+//                message.setText("Register your user by clicking on this link:" +
+//                        " http://85.214.195.89:8080/api/users/verify?token=" + token);
+
+                message.setContent(multipart, "text/html");
 
                 Transport.send(message);
 
