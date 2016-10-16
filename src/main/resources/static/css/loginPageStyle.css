@@ -53,6 +53,12 @@
     color: #4CAF50;
     text-decoration: none;
 }
+
+.form .error {
+    background: rgba(255, 0, 0, 0.49);
+    color: white;
+}
+
 .form .register-form {
     display: none;
 }

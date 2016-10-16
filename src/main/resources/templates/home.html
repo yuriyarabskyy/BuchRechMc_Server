@@ -19,9 +19,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.9/angular-materialize.min.js"></script>
     <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
 
-    <script type="text/javascript" src="js/pdf.js"></script>
-    <script type="text/javascript" src="js/angular-pdf.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
     <link href="css/loginPageStyle.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
@@ -37,6 +34,8 @@
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
 
+        <p id="formErrorMessage" ng-show="isError" class="message error">Email or password is incorrect.</p>
+
         <form class="login-form" action="/login" method="post">
             <input ng-model="emailLogin" id="username" name="username"  type="text" placeholder="email"/>
             <input ng-model="passwordLogin" id="password" name="password" type="password" placeholder="password"/>
@@ -49,12 +48,26 @@
 <script>
     $('.message a').click(function(){
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+        $('#formErrorMessage').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
 </script>
 
 <script>
-    var brmLoginApp = angular.module("brmLoginApp",[]);
-    brmLoginApp.controller("LoginCtrl",function ($scope, $http){
+    var brmLoginApp = angular.module("brmLoginApp",['ui.router']);
+    brmLoginApp.config(function ($stateProvider,$urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+                .state('login',{
+                    url:'/login',
+                    templateUrl:'home.html',
+                    controller:'LoginCtrl'
+                });
+    });
+
+    brmLoginApp.controller("LoginCtrl",function ($scope, $http, $location){
+        $scope.isError = $location.absUrl().includes("error");
+        console.log($scope.isError);
         $scope.credentials={};
         $scope.register=function(){
             var data = $scope.credentials;
@@ -65,6 +78,7 @@
                 data: data
             }).success(function (data, status) {
                 console.log("Success"+data);
+
             }).error(function (error) {
                 console.log(error);
             })
