@@ -100,6 +100,7 @@ public class UsersController {
                 BodyPart body = new MimeBodyPart();
 
                 Configuration cfg = new Configuration();
+
                 Template template = cfg.getTemplate("html-mail-template.ftl");
                 Map<String, String> rootMap = new HashMap<>();
                 rootMap.put("to", to);
@@ -109,16 +110,10 @@ public class UsersController {
                 template.process(rootMap, out);
 
 
-                body.setContent(out.toString(), "text/html");
-
-                Multipart multipart = new MimeMultipart();
-                multipart.addBodyPart(body);
-
-
 //                message.setText("Register your user by clicking on this link:" +
 //                        " http://85.214.195.89:8080/api/users/verify?token=" + token);
 
-                message.setContent(multipart, "text/html");
+                message.setContent(out.toString(), "text/html");
 
                 Transport.send(message);
 
