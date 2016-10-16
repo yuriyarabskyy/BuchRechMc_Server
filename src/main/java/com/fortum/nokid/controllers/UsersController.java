@@ -114,9 +114,9 @@ public class UsersController {
 //                        " http://85.214.195.89:8080/api/users/verify?token=" + token);
 
                 message.setContent(out.toString(), "text/html");
-                System.out.println("Message sent");
+
                 Transport.send(message);
-                System.out.println("Message sent");
+
                 user.setToken(token);
                 user.setEnabled(true);
 
