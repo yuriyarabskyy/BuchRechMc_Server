@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -136,7 +137,7 @@ public class UsersController {
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
     @Transactional
     @ResponseBody
-    public ResponseEntity<?> verify(@RequestParam("token") String token) {
+    public ModelAndView verify(@RequestParam("token") String token) {
 
         org.hibernate.Session session = tr.getSessionFactory().openSession();
         session.beginTransaction();
@@ -148,7 +149,7 @@ public class UsersController {
 
         List<User> users = query.list();
 
-        if (users.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (users.isEmpty()) return new ModelAndView("redirect:" + "85.214.195.89/login?error");
         session.getTransaction().commit();
         UserRole userRole = new UserRole();
 
@@ -159,7 +160,7 @@ public class UsersController {
         session.beginTransaction();
         userRoleDAO.save(userRole);
         session.getTransaction().commit();
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ModelAndView("redirect:" + "85.214.195.89/login");
     }
 
     @CrossOrigin(origins = "*")
