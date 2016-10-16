@@ -116,7 +116,7 @@ public class UsersController {
                 message.setContent(out.toString(), "text/html");
 
                 Transport.send(message);
-
+                System.out.println("Message sent");
                 user.setToken(token);
                 user.setEnabled(true);
 
