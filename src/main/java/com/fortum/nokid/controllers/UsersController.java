@@ -103,9 +103,9 @@ public class UsersController {
 
                 Template template = cfg.getTemplate("html-mail-template.ftl");
                 Map<String, String> rootMap = new HashMap<>();
-                rootMap.put("to", to);
+                rootMap.put("to", user.getFirstName());
                 rootMap.put("body", messageBody);
-                rootMap.put("from", "BuchrechMC Group");
+                rootMap.put("from", "BuchrechMC TEAM");
                 Writer out = new StringWriter();
                 template.process(rootMap, out);
 
