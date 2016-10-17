@@ -81,8 +81,7 @@ public class UsersController {
 
                 String host = "localhost";
 
-                String messageBody = "Register your user by clicking on this link:" +
-                        " http://85.214.195.89:8080/api/users/verify?token=" + token;
+                String messageBody = "http://85.214.195.89:8080/api/users/verify?token=" + token;
 
                 Properties properties = System.getProperties();
 
@@ -102,17 +101,12 @@ public class UsersController {
 
                 Configuration cfg = new Configuration();
 
-                Template template = cfg.getTemplate("html-mail-template.ftl");
+                Template template = cfg.getTemplate("salted-responsive-email-template.ftl");
                 Map<String, String> rootMap = new HashMap<>();
                 rootMap.put("to", user.getFirstName());
-                rootMap.put("body", messageBody);
-                rootMap.put("from", "BuchrechMC TEAM");
+                rootMap.put("link", messageBody);
                 Writer out = new StringWriter();
                 template.process(rootMap, out);
-
-
-//                message.setText("Register your user by clicking on this link:" +
-//                        " http://85.214.195.89:8080/api/users/verify?token=" + token);
 
                 message.setContent(out.toString(), "text/html");
 
