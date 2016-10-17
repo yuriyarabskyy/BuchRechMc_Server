@@ -14,12 +14,12 @@ var brmApp = angular.module("brmApp",['ui.materialize','pdf','ui.router']);
 
 //Router Provider
 brmApp.config(function ($stateProvider,$urlRouterProvider) {
-    $urlRouterProvider.otherwise('/questions');
+    $urlRouterProvider.otherwise('/');
 
     $stateProvider
         .state('home',{
          url:'/',
-            templateUrl:'html/home.html',
+            templateUrl:'html/questionsTab.html',
             controller:'MainAppCtrl'
      })
         .state('questions',{
@@ -37,10 +37,11 @@ brmApp.config(function ($stateProvider,$urlRouterProvider) {
             url:'/exercises',
             templateUrl:'html/exercisesTab.html',
             controller:'MainAppCtrl'
-        }).state('addNewQuestion',{
-        url:'/addNewQuestion',
-        templateUrl:'html/addNewQuestionTab.html',
-        controller:'addNewQuestionTabCtrl'
+    })
+        .state('addNewQuestion',{
+            url:'/addNewQuestion',
+            templateUrl:'html/addNewQuestionTab.html',
+            controller:'addNewQuestionTabCtrl'
     });
 });
 
