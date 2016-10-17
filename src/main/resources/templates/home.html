@@ -1,5 +1,5 @@
-
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -7,10 +7,9 @@
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link href="Libraries/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet"/>
-    <link href="Libraries/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet" type='text/css'/>
 
     <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. All of which are needed. -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
@@ -26,6 +25,8 @@
 
 <div class="login-page" ng-controller="LoginCtrl">
     <div class="form">
+        <p ng-show="isErrorRegistration" class="message error formErrorMessage">{{errorMessage}}</p>
+
         <form class="register-form">
             <input ng-model="credentials.firstName" name="firstName" type="text" placeholder="First Name"/>
             <input ng-model="credentials.password" type="password" placeholder="password"/>
@@ -34,7 +35,7 @@
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
 
-        <p id="formErrorMessage" ng-show="isError" class="message error">Email or password is incorrect.</p>
+        <p ng-show="isErrorLogin" class="message error formErrorMessage">{{errorMessage}}</p>
 
         <form class="login-form" action="/login" method="post">
             <input ng-model="emailLogin" id="username" name="username"  type="text" placeholder="email"/>
@@ -48,26 +49,16 @@
 <script>
     $('.message a').click(function(){
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-        $('#formErrorMessage').animate({height: "toggle", opacity: "toggle"}, "slow");
+        $('.formErrorMessage').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
 </script>
 
 <script>
     var brmLoginApp = angular.module("brmLoginApp",['ui.router']);
-    brmLoginApp.config(function ($stateProvider,$urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
 
-        $stateProvider
-                .state('login',{
-                    url:'/login',
-                    templateUrl:'home.html',
-                    controller:'LoginCtrl'
-                });
-    });
-
-    brmLoginApp.controller("LoginCtrl",function ($scope, $http, $location){
-        $scope.isError = $location.absUrl().includes("error");
-        console.log($scope.isError);
+    brmLoginApp.controller("LoginCtrl", function ($scope, $http, $location, $window){
+        $scope.isErrorLogin = $location.absUrl().includes("error");
+        $scope.errorMessage = "Email or password is not correct.";
         $scope.credentials={};
         $scope.register=function(){
             var data = $scope.credentials;
@@ -78,9 +69,11 @@
                 data: data
             }).success(function (data, status) {
                 console.log("Success"+data);
-
+                $window.location.reload()
             }).error(function (error) {
                 console.log(error);
+                $scope.isErrorRegistration = true;
+                $scope.errorMessage = "Your data is not correct.";
             })
         };
     });

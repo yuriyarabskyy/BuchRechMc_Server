@@ -4,6 +4,7 @@
             <li ui-sref-active="active"><a ui-sref="pdfLectures">PDF</a></li>
             <li ui-sref-active="active"><a ui-sref="questions">MC</a></li>
             <li ui-sref-active="active"><a ui-sref="exercises">Exercise</a></li>
+            <li ui-sref-active="active"><a href="/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -25,7 +26,7 @@
                 <div class="collapsible-body">
                     <ul>
                         <!--Kapitel Questions-->
-                        <li ng-repeat="question in data.questions|filter:{chapter:$index}"><a ng-click="goToQuestion(question)" class="truncate">{{question.content}}</a></li>
+                        <li ng-repeat="question in data.questions|filter:{chapter:$index+1}"><a ng-click="goToQuestion(question)" class="truncate">{{question.content}}</a></li>
                     </ul>
                 </div>
             </li><!--End of Kapitel Header-->

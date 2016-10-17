@@ -37,10 +37,11 @@ brmApp.config(function ($stateProvider,$urlRouterProvider) {
             url:'/exercises',
             templateUrl:'html/exercisesTab.html',
             controller:'MainAppCtrl'
-        }).state('addNewQuestion',{
-        url:'/addNewQuestion',
-        templateUrl:'html/addNewQuestionTab.html',
-        controller:'addNewQuestionTabCtrl'
+    })
+        .state('addNewQuestion',{
+            url:'/addNewQuestion',
+            templateUrl:'html/addNewQuestionTab.html',
+            controller:'addNewQuestionTabCtrl'
     });
 });
 
