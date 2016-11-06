@@ -1,5 +1,6 @@
 package com.fortum.nokid.controllers;
 
+import com.fortum.nokid.Utils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,12 @@ public class UpdateController {
 
         return "TODO";
 
+    }
+
+    @RequestMapping(value="/api/pingSlack",method = RequestMethod.GET)
+    @ResponseBody
+    public void sendTestSlackMessage() {
+        Utils.sendErrorTextToSlack("Test message from server :)");
     }
 
 }

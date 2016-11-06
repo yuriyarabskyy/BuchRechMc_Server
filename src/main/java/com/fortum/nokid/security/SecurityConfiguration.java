@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login", "/api/users/register", "/api/users/verify", "/api/lectures/logo.png",
-                        "/api/lectures/responsive-email.jpeg").permitAll()
+                        "/api/lectures/responsive-email.jpeg", "/api/pingSlack").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
