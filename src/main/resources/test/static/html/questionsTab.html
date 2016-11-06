@@ -1,0 +1,22 @@
+<header>
+    <div ng-include="'html/navigationMC.html'"></div>
+</header>
+
+<main>
+    <!--<div ng-include="'html/mainContentMC.html'"></div>-->
+    <my-question question="actualQuestion" user="data.user"></my-question>
+
+    <!--Floating button-->
+    <div ng-show="data.user.isAdmin" class="fixed-action-btn" style="bottom: 80px; right: 24px;">
+        <a ui-sref="addNewQuestion" class="btn-floating btn-large red">
+            <i class="large material-icons">add</i>
+        </a>
+
+    </div>
+    <!--Floating button-->
+
+</main>
+
+<footer class="page-footer orange">
+    <div ng-include="'html/footer.html'"></div>
+</footer>

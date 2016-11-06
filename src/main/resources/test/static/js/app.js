@@ -15,30 +15,29 @@ brmApp.config(function ($stateProvider,$urlRouterProvider) {
 
     $stateProvider
         .state('home',{
-         url:'/',
-            templateUrl:'html/questionsTab.html',
+            url:'/',
+            templateUrl:'html/home.html',
             controller:'MainAppCtrl'
-     })
+        })
         .state('questions',{
             url:'/questions',
             templateUrl:'html/questionsTab.html',
             controller:'MainAppCtrl'
-    })
+        })
         .state('pdfLectures',{
             url:'/pdfLectures',
             controller:'PdfLecturesCtrl',
             templateUrl: 'html/pdfTab.html'
 
-    })
+        })
         .state('exercises',{
             url:'/exercises',
             templateUrl:'html/exercisesTab.html',
             controller:'MainAppCtrl'
-    })
-        .state('addNewQuestion',{
-            url:'/addNewQuestion',
-            templateUrl:'html/addNewQuestionTab.html',
-            controller:'addNewQuestionTabCtrl'
+        }).state('addNewQuestion',{
+        url:'/addNewQuestion',
+        templateUrl:'html/addNewQuestionTab.html',
+        controller:'addNewQuestionTabCtrl'
     });
 });
 
@@ -128,15 +127,11 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 
     };
 
-<<<<<<< HEAD
-    $scope.servUrl="http://85.214.195.89:8080/api";
-=======
 
 
 
 
     $scope.servUrl="http://85.214.195.89/api";
->>>>>>> f3d6b7dcdf05e0a55504ca03ea317119ccf72b9c
 
     $http.get($scope.servUrl+'/questions/getAll').success(function (data, status, headers, config) {
         if(data){
@@ -167,7 +162,7 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
     };
 
     $scope.isUserAdmin=function () {
-       return $scope.data.user.isAdmin;
+        return $scope.data.user.isAdmin;
     };
 
 
@@ -175,8 +170,8 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 
 });
 
-brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
-    $scope.servUrl="http://85.214.195.89";
+brmApp.controller("LoginCtrl",function ($location,$rootScope,$scope, $http) {
+    $scope.servUrl="http://85.214.195.89/api";
 
     var authenticate = function(credentials, callback) {
         var data = credentials ? "username=" + credentials.email + "&password=" + credentials.password + "&submit=Login"
@@ -210,7 +205,7 @@ brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
 
     authenticate();
     self.credentials = {email:$scope.emailLogin,
-                        password:$scope.passwordLogin};
+        password:$scope.passwordLogin};
     $scope.login = function() {
         authenticate(self.credentials, function() {
             if ($rootScope.authenticated) {
@@ -221,9 +216,6 @@ brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
                 self.error = true;
             }
         });
-    };
-    $scope.testHelloOutput=function(){
-      console.log("Hello");
     };
 
     self.logout = function() {
@@ -242,9 +234,9 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 
     $http.get($scope.servUrl+'/topics/getAll').success(function (data, status, headers, config) {
 
-     $scope.data.topics=data;
-     console.log($scope.data.topics);
-     });
+        $scope.data.topics=data;
+        console.log($scope.data.topics);
+    });
 
     $scope.getAllTopics=function () {//TODO delete dummy
         return $scope.data.topics;
@@ -252,7 +244,7 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 
     $scope.onSubmit=function () {
 
-    var questionsToSend=[$scope.newQuestion];
+        var questionsToSend=[$scope.newQuestion];
         questionsToSend[0].possibleAnswers=[{answerId:0 , answer:$scope.newQuestion.possibleAnswers[0]},
             {answerId:1 , answer:$scope.newQuestion.possibleAnswers[1]},
             {answerId:2 , answer:$scope.newQuestion.possibleAnswers[2]},
@@ -320,7 +312,7 @@ brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
     });
 
     $scope.actualLecture = $scope.data.lectures[0];
-        $scope.getNavStyle = function(scroll) {
+    $scope.getNavStyle = function(scroll) {
         if(scroll > 100) return 'pdf-controls fixed';
         else return 'pdf-controls';
     };
@@ -377,38 +369,38 @@ brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$co
         scope.servUrl="http://85.214.195.89/api";
         scope.isChoosingAnswerEnabled=true;
 
-         scope.onAnswerClick = function (event,answerId) {
-             console.log(event);
-             var rightAnswerLetter;
-             console.log(scope.actualQuestion);
-             var rightAnswerId=scope.actualQuestion.correctAnswerId;
+        scope.onAnswerClick = function (event,answerId) {
+            console.log(event);
+            var rightAnswerLetter;
+            console.log(scope.actualQuestion);
+            var rightAnswerId=scope.actualQuestion.correctAnswerId;
 
-             //TODO Make it better
-             switch (rightAnswerId){
-                 case 0:
-                     rightAnswerLetter='A';
-                     break;
-                 case 1:
-                     rightAnswerLetter='B';
-                     break;
-                 case 2:
-                     rightAnswerLetter='C';
-                     break;
-                 case 3:
-                     rightAnswerLetter='D';
-                     break;
-             }
+            //TODO Make it better
+            switch (rightAnswerId){
+                case 0:
+                    rightAnswerLetter='A';
+                    break;
+                case 1:
+                    rightAnswerLetter='B';
+                    break;
+                case 2:
+                    rightAnswerLetter='C';
+                    break;
+                case 3:
+                    rightAnswerLetter='D';
+                    break;
+            }
 
-             var elem =angular.element(event.target);
-             scope.isChoosingAnswerEnabled=false;
-             if(answerId===rightAnswerId){
-                 elem.addClass('green lighten-3');
-                 //Todo Implement send to server
-             }else{
-                 elem.addClass('red lighten-3');
-                 angular.element(document).find('#answer'+rightAnswerLetter).addClass('green lighten-3');
-             }
-         };
+            var elem =angular.element(event.target);
+            scope.isChoosingAnswerEnabled=false;
+            if(answerId===rightAnswerId){
+                elem.addClass('green lighten-3');
+                //Todo Implement send to server
+            }else{
+                elem.addClass('red lighten-3');
+                angular.element(document).find('#answer'+rightAnswerLetter).addClass('green lighten-3');
+            }
+        };
 
         //Normal mode = choosing NOT editing
         scope.setNormalQuestionView=function () {
@@ -443,37 +435,37 @@ brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$co
         });
 
         //Set OnClick on Edit/Save Button
-      var editButton = element.find("a#editButton");
-      editButton.bind('click',function () {
-          if(editButton.text()==='Save'){
-              onSaveClick(editButton);
-          }else if(editButton.text()==='Edit'){
-             onEditClick(editButton);
-          }
+        var editButton = element.find("a#editButton");
+        editButton.bind('click',function () {
+            if(editButton.text()==='Save'){
+                onSaveClick(editButton);
+            }else if(editButton.text()==='Edit'){
+                onEditClick(editButton);
+            }
 
-      });
+        });
 
         //Functionality of previous button
         var previousButton = element.find("a#previousButton");
         previousButton.bind('click',function () {
-                var index = scope.data.questions.indexOf(scope.actualQuestion)-1;
-                if(index>=0||index<scope.data.questions.length){
-                    scope.actualQuestion = scope.data.questions[index];
-                    scope.isChoosingAnswerEnabled=true;
-                    scope.$apply();//Todo make it without apply
-                }
+            var index = scope.data.questions.indexOf(scope.actualQuestion)-1;
+            if(index>=0||index<scope.data.questions.length){
+                scope.actualQuestion = scope.data.questions[index];
+                scope.isChoosingAnswerEnabled=true;
+                scope.$apply();//Todo make it without apply
+            }
 
 
         });
         //Functionality of next button
         var nextButton = element.find("a#nextButton");
         nextButton.bind('click',function () {
-                var index = scope.data.questions.indexOf(scope.actualQuestion)+1;
-                if(index>=0||index<scope.data.questions.length){
-                    scope.actualQuestion = scope.data.questions[index];
-                    scope.isChoosingAnswerEnabled=true;
-                    scope.$apply();//Todo make it without apply
-                }
+            var index = scope.data.questions.indexOf(scope.actualQuestion)+1;
+            if(index>=0||index<scope.data.questions.length){
+                scope.actualQuestion = scope.data.questions[index];
+                scope.isChoosingAnswerEnabled=true;
+                scope.$apply();//Todo make it without apply
+            }
         });
 
 
@@ -518,35 +510,35 @@ brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$co
                 {answerId:1,answer:element.find("#answerB").val()},
                 {answerId:2,answer:element.find("#answerC").val()},
                 {answerId:3,answer:element.find("#answerD").val()}
-                ];
+            ];
             console.log(questionToSend);
             $http.post(scope.servUrl+'/questions/pushQuestions',questionToSend).then(function successCallback(response) {
-             // this callback will be called asynchronously
-             // when the response is available
-             console.log(response);
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log(response);
 
-             }, function errorCallback(response) {
-             // called asynchronously if an error occurs
-             // or server returns response with an error status.
-             console.log(response);
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log(response);
 
-             });
+            });
         };
 
         function checkNoEmptyFields() {
             return element.find("#content").attr('value')!==''&&
-            element.find("#answerA").attr('value')!==''&&
-            element.find("#answerB").attr('value')!==''&&
-            element.find("#answerC").attr('value')!==''&&
-            element.find("#answerD").attr('value')!=='';
+                element.find("#answerA").attr('value')!==''&&
+                element.find("#answerB").attr('value')!==''&&
+                element.find("#answerC").attr('value')!==''&&
+                element.find("#answerD").attr('value')!=='';
         }
 
     };
     return{
         restrict : 'E',
         scope : {actualQuestion:"=question",
-                isChoosingAnswerEnabled:"=isChoosingEnabled",
-                data:"="},
+            isChoosingAnswerEnabled:"=isChoosingEnabled",
+            data:"="},
         templateUrl: 'html/mainContentMC.html',
         require:["^?ngShow","^?ngClick"],
         link:linkFn
