@@ -1,6 +1,3 @@
-/**
- * Created by Nokid on 12/07/16.
- */
 'use strict';
 
 var model={
@@ -130,10 +127,6 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
         console.log(rightSide);
 
     };
-
-
-
-
 
     $scope.servUrl="http://85.214.195.89:8080/api";
 
