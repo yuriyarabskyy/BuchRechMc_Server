@@ -128,15 +128,7 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 
     };
 
-<<<<<<< HEAD
-    $scope.servUrl="http://85.214.195.89:8080/api";
-=======
-
-
-
-
     $scope.servUrl="http://85.214.195.89/api";
->>>>>>> f3d6b7dcdf05e0a55504ca03ea317119ccf72b9c
 
     $http.get($scope.servUrl+'/questions/getAll').success(function (data, status, headers, config) {
         if(data){
