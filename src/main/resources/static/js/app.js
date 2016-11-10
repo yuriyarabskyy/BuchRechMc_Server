@@ -47,7 +47,7 @@ brmApp.config(function ($stateProvider,$urlRouterProvider) {
 
 //Model
 brmApp.factory('brmFactory',['$http',function ($http) {
-    var servUrl="http://85.214.195.89/api";
+    var servUrl="http://bilanzportal.de/api";
 
     //Get Model Items
 
@@ -135,7 +135,7 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 
 
 
-    $scope.servUrl="http://85.214.195.89/api";
+    $scope.servUrl="http://bilanzportal.de/api";
 
     $http.get($scope.servUrl+'/questions/getAll').success(function (data, status, headers, config) {
         if(data){
@@ -175,7 +175,7 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 });
 
 brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
-    $scope.servUrl="http://85.214.195.89";
+    $scope.servUrl="http://bilanzportal.de/";
 
     var authenticate = function(credentials, callback) {
         var data = credentials ? "username=" + credentials.email + "&password=" + credentials.password + "&submit=Login"
@@ -237,7 +237,7 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
     $scope.newQuestion={};
     $scope.data={};
     $scope.data.topics={};
-    $scope.servUrl="http://85.214.195.89/api";
+    $scope.servUrl="http://bilanzportal.de/api";
 
     $http.get($scope.servUrl+'/topics/getAll').success(function (data, status, headers, config) {
 
@@ -301,7 +301,7 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 
 //PDF Controller
 brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
-    $scope.servUrl="http://85.214.195.89/api";
+    $scope.servUrl="http://bilanzportal.de/api";
     $scope.pdfUrl = 'f.txt.pdf';
 
     $scope.showQuestionForPage = false;
@@ -373,7 +373,7 @@ brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
 
 brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$compile,$timeout) {
     var linkFn=function (scope, element, attrs, controller, transcludeFn) {
-        scope.servUrl="http://85.214.195.89/api";
+        scope.servUrl="http://bilanzportal.de/api";
         scope.isChoosingAnswerEnabled=true;
 
          scope.onAnswerClick = function (event,answerId) {
