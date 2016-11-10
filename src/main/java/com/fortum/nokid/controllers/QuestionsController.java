@@ -16,7 +16,7 @@ import java.util.*;
 @RestController
 public class QuestionsController {
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value ="/getByContent",method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Question> getByContent(@RequestBody String content){
         List<Question> questions;
@@ -30,7 +30,7 @@ public class QuestionsController {
         return questions;
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value ="/getById", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Question> getById(@RequestBody String ids){
 
@@ -52,7 +52,7 @@ public class QuestionsController {
         return questions;
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public Iterable<Question> getAll() {
@@ -63,7 +63,7 @@ public class QuestionsController {
         return questions;
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/pushQuestions", method = RequestMethod.POST)
     @ResponseBody
     @Transactional
@@ -97,7 +97,7 @@ public class QuestionsController {
 
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/answerQuestion", method = RequestMethod.POST)
     @Transactional
     @ResponseBody

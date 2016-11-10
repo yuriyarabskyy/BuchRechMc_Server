@@ -27,7 +27,7 @@ public class TopicsController {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @Transactional
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
@@ -39,7 +39,7 @@ public class TopicsController {
         return list;
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @ResponseBody
     @RequestMapping(value = "/addTopic", method = RequestMethod.POST)
     public ResponseEntity<?> addTopic(@RequestBody Topic topic) {

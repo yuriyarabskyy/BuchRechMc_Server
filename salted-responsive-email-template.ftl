@@ -139,7 +139,7 @@
                         <td style="padding: 20px 0px 30px 0px;" class="logo">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
-                                    <td bgcolor="#71b656" width="100" align="center"><a href="" target="_blank"><img alt="Logo" src="http://85.214.195.89:8080/api/lectures/logo.png" width="52" height="78" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #666666; font-size: 16px;" border="0"></a></td>
+                                    <td bgcolor="#71b656" width="100" align="center"><a href="" target="_blank"><img alt="Logo" src="http://85.214.195.89/api/lectures/logo.png" width="52" height="78" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #666666; font-size: 16px;" border="0"></a></td>
                                     
                                 </tr>
                             </table>
@@ -169,7 +169,7 @@
                                                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                           <tr>
                                                               <td>
-                                                                  <a href="http://alistapart.com/article/can-email-be-responsive/" target="_blank"><img src="http://85.214.195.89:8080/api/lectures/responsive-email.jpeg" width="500" height="200" border="0" alt="Can an email really be responsive?" style="display: block; padding: 0; color: #666666; text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px; width: 500px; height: 200px;" class="img-max"></a>
+                                                                  <a href="http://alistapart.com/article/can-email-be-responsive/" target="_blank"><img src="http://85.214.195.89/api/lectures/responsive-email.jpeg" width="500" height="200" border="0" alt="Can an email really be responsive?" style="display: block; padding: 0; color: #666666; text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px; width: 500px; height: 200px;" class="img-max"></a>
                                                               </td>
                                                             </tr>
                                                         </table>

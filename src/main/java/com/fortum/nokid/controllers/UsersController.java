@@ -63,7 +63,7 @@ public class UsersController {
     private SessionFactory sessionFactory;
 
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "http://bilanzportal.de")
     @Transactional
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody User user) {
@@ -81,7 +81,7 @@ public class UsersController {
 
                 String host = "localhost";
 
-                String messageBody = "http://85.214.195.89:8080/api/users/verify?token=" + token;
+                String messageBody = "http://85.214.195.89/api/users/verify?token=" + token;
 
                 Properties properties = System.getProperties();
 
@@ -128,7 +128,7 @@ public class UsersController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
     @Transactional
     @ResponseBody
@@ -158,7 +158,7 @@ public class UsersController {
         return new ModelAndView("redirect:" + "85.214.195.89/login");
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getUsersByName", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<User> getUsersByLastName(@RequestParam(value = "", required = false) String lastName,
                                              @RequestParam(value = "", required = false) String firstName) {
@@ -172,7 +172,7 @@ public class UsersController {
         return users;
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<User> getAll() { return userDAO.findAll(); }
 

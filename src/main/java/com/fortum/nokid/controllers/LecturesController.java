@@ -93,7 +93,7 @@ public class LecturesController {
         }
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/getQuestions", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     @Transactional
@@ -117,7 +117,7 @@ public class LecturesController {
 
     }
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/upload")
     public String provideUploadInfo(Model model) throws IOException {
 
@@ -131,7 +131,7 @@ public class LecturesController {
     }
 
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
     @ResponseBody
     public ResponseEntity<?> handleFileUpload(HttpServletRequest request){
@@ -169,7 +169,7 @@ public class LecturesController {
     }
 
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET, value = "/{filename:.+}")
     @ResponseBody
     public ResponseEntity<?> getFile(@PathVariable String filename) {
@@ -182,7 +182,7 @@ public class LecturesController {
     }
 
 
-    @CrossOrigin(origins = "*")
+//    @xOrigin(origins = "*")
     @RequestMapping(value="/getLectureByName", method = RequestMethod.GET)
     public @ResponseBody
     Lecture getLectureByName(@RequestParam("name") String fileName) {
@@ -198,7 +198,7 @@ public class LecturesController {
     }
 
 
-    @CrossOrigin(origins = "*")
+//    @CrossOrigin(origins = "*")
     @RequestMapping(value="/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
     Iterable<Lecture> getAll() {
