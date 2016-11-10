@@ -19,7 +19,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry.addMapping("http://bilanzportal.de/**");
+        registry.addMapping("http://85.214.195.89/**");
     }
 
 }
