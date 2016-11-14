@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="197bff7c-f0e2-4a1f-9ab9-3d402448d829" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/fortum/nokid/MvcConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/fortum/nokid/MvcConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java" afterPath="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java" />
     </list>
     <ignored path="BuchRechMc_Server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,18 +31,20 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
               <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UsersController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="65" column="12" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="12" />
+            <state relative-caret-position="-108">
+              <caret line="83" column="60" selection-start-line="83" selection-start-column="60" selection-end-line="83" selection-end-column="60" />
               <folding>
-                <marker date="1478809802000" expanded="true" signature="4467:4507" ph="select * fro... users" />
+                <marker date="1479158822000" expanded="true" signature="4469:4509" ph="select * fro... users" />
               </folding>
             </state>
           </provider>
@@ -54,13 +56,14 @@
             <state relative-caret-position="90">
               <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1038#1039#0" expanded="false" />
+                <element signature="e#1107#1108#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MvcConfig.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MvcConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/MvcConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -83,7 +86,7 @@
       <file leaf-file-name="LecturesController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/LecturesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2310">
+            <state relative-caret-position="282">
               <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
               <folding>
                 <marker date="1478809821000" expanded="true" signature="2044:2067" ph="select * fro... questions" />
@@ -105,7 +108,7 @@
       <file leaf-file-name="QuestionsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/QuestionsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
+            <state relative-caret-position="330">
               <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
               <folding>
                 <marker date="1478809821000" expanded="true" signature="2852:2921" ph="select * fro... answers" />
@@ -121,6 +124,7 @@
             <state relative-caret-position="465">
               <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <marker date="1478809829000" expanded="true" signature="1002:1068" ph="select topic... topics" />
               </folding>
             </state>
@@ -132,7 +136,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,13 +172,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/security/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/resources/test/static/js/app.js" />
         <option value="$PROJECT_DIR$/salted-responsive-email-template.ftl" />
-        <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/LecturesController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/QuestionsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/TopicsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/app.js" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/MvcConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java" />
       </list>
     </option>
   </component>
@@ -897,12 +903,12 @@
       <workItem from="1477238239957" duration="286000" />
       <workItem from="1478015811509" duration="2494000" />
       <workItem from="1478718421683" duration="3075000" />
-      <workItem from="1479157952948" duration="158000" />
+      <workItem from="1479157952948" duration="577000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35238000" />
+    <option name="totallyTimeSpent" value="35657000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -916,7 +922,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47945204" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.669863" sideWeight="0.49574015" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66849315" sideWeight="0.49574015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32148626" sideWeight="0.49452055" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1003,7 +1009,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1281,17 +1289,8 @@
         <state relative-caret-position="90">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/LecturesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2310">
-          <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
-          <folding>
-            <marker date="1478809821000" expanded="true" signature="2044:2067" ph="select * fro... questions" />
+            <element signature="e#1038#1039#0" expanded="false" />
+            <element signature="e#1107#1108#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1301,6 +1300,7 @@
         <state relative-caret-position="465">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1478809829000" expanded="true" signature="1002:1068" ph="select topic... topics" />
           </folding>
         </state>
@@ -1310,16 +1310,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="65" column="12" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="12" />
           <folding>
-            <marker date="1478809802000" expanded="true" signature="4467:4507" ph="select * fro... users" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1328,17 +1320,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/QuestionsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
           <folding>
-            <marker date="1478809821000" expanded="true" signature="2852:2921" ph="select * fro... answers" />
-            <marker date="1478809821000" expanded="true" signature="4244:4354" ph="select * fro... users_questions" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1364,6 +1347,37 @@
         <state relative-caret-position="285">
           <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/QuestionsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="62" column="14" selection-start-line="62" selection-start-column="14" selection-end-line="62" selection-end-column="14" />
+          <folding>
+            <marker date="1478809821000" expanded="true" signature="2852:2921" ph="select * fro... answers" />
+            <marker date="1478809821000" expanded="true" signature="4244:4354" ph="select * fro... users_questions" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/LecturesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
+          <folding>
+            <marker date="1478809821000" expanded="true" signature="2044:2067" ph="select * fro... questions" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="83" column="60" selection-start-line="83" selection-start-column="60" selection-end-line="83" selection-end-column="60" />
+          <folding>
+            <marker date="1479158822000" expanded="true" signature="4469:4509" ph="select * fro... users" />
+          </folding>
         </state>
       </provider>
     </entry>

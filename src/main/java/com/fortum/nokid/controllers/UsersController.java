@@ -81,7 +81,7 @@ public class UsersController {
 
                 String host = "localhost";
 
-                String messageBody = "http://85.214.195.89/api/users/verify?token=" + token;
+                String messageBody = "http://bilanzportal.de/api/users/verify?token=" + token;
 
                 Properties properties = System.getProperties();
 
@@ -144,7 +144,7 @@ public class UsersController {
 
         List<User> users = query.list();
 
-        if (users.isEmpty()) return new ModelAndView("redirect:" + "85.214.195.89/login?error");
+        if (users.isEmpty()) return new ModelAndView("redirect:" + "http://bilanzportal.de/login?error");
         session.getTransaction().commit();
         UserRole userRole = new UserRole();
 
@@ -155,7 +155,7 @@ public class UsersController {
         session.beginTransaction();
         userRoleDAO.save(userRole);
         session.getTransaction().commit();
-        return new ModelAndView("redirect:" + "85.214.195.89/login");
+        return new ModelAndView("redirect:" + "http://bilanzportal.de/login");
     }
 
 //    @CrossOrigin(origins = "*")
