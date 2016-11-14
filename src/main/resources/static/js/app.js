@@ -150,7 +150,7 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
         }
     });
 
-    $scope.data.user={name : "Peter Griffin",isAdmin : true,id : "9363bdobe"};//TODO Dummy
+    $scope.data.user={isAdmin : false};//TODO Dummy
 
 
     $scope.isChoosingAnswerEnabled=true;
@@ -301,8 +301,12 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 
 //PDF Controller
 brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
+    $http.get($scope.servUrl+'/lectures/getAll').success(function (data, status, headers, config) {
+        $scope.data.lectures=data;
+    });
+
     $scope.servUrl="http://bilanzportal.de/api";
-    $scope.pdfUrl = $scope.servUrl+'/lectures/vorlesung1.pdf';
+    $scope.pdfUrl = $scope.servUrl + '/lectures/' + $scope.data.lectures[0];
 
     $scope.showQuestionForPage = false;
     $scope.actualQuestion = {};
@@ -314,9 +318,7 @@ brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
     $scope.data=model;
     $scope.data.user={name : "Peter Griffin",isAdmin : false,id : "9363bdobe"};//TODO Dummy
 
-    $http.get($scope.servUrl+'/lectures/getAll').success(function (data, status, headers, config) {
-        $scope.data.lectures=data;
-    });
+
 
     $scope.actualLecture = $scope.data.lectures[0];
         $scope.getNavStyle = function(scroll) {
