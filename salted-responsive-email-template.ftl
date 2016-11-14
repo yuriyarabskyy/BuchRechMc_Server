@@ -227,7 +227,7 @@
                         <table width="500" border="0" cellspacing="0" cellpadding="0" align="center" class="responsive-table">
                             <tr>
                                 <td align="center" valign="middle" style="font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
-                                    <span class="appleFooter" style="color:#ffffff;">Made by Mykola Odnoshyvkin and Yuriy Arabskyy</span><br>
+                                    <span class="appleFooter" style="color:#ffffff;">Made by Mykola Odnoshyvkin and Yuriy Arabskyy. Sponsored and approved by Prof. Dr. Bernd Grottel.</span><br>
                                 </td>
                             </tr>
                         </table>
