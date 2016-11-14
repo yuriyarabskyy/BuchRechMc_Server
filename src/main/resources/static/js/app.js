@@ -303,8 +303,12 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
     $scope.servUrl="http://bilanzportal.de/api";
 
+    $scope.data.lectures = ["vorlesung1.pdf"];
+
     $http.get($scope.servUrl+'/lectures/getAll').success(function (data, status, headers, config) {
-        $scope.data.lectures=data;
+
+        if(data) $scope.data.lectures=data;
+
     });
 
     $scope.servUrl="http://bilanzportal.de/api";
@@ -318,7 +322,7 @@ brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
     $scope.isChoosingAnswerEnabled=true;
 
     $scope.data=model;
-    $scope.data.user={name : "Peter Griffin",isAdmin : false,id : "9363bdobe"};//TODO Dummy
+    $scope.data.user={isAdmin : false};//TODO Dummy
 
 
 

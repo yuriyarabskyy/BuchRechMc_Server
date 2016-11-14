@@ -182,7 +182,7 @@ public class LecturesController {
     }
 
 
-//    @xOrigin(origins = "*")
+//    @Origin(origins = "*")
     @RequestMapping(value="/getLectureByName", method = RequestMethod.GET)
     public @ResponseBody
     Lecture getLectureByName(@RequestParam("name") String fileName) {
