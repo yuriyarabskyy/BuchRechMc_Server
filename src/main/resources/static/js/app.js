@@ -186,7 +186,7 @@ brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
             url: $scope.servUrl+"/login",
             data: data,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).success(function (data, status) {
             $http({
@@ -302,7 +302,7 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 //PDF Controller
 brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
     $scope.servUrl="http://bilanzportal.de/api";
-    $scope.pdfUrl = 'f.txt.pdf';
+    $scope.pdfUrl = $scope.servUrl+'/lectures/vorlesung1.pdf';
 
     $scope.showQuestionForPage = false;
     $scope.actualQuestion = {};
