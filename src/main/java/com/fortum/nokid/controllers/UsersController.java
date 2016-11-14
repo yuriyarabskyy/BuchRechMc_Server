@@ -110,12 +110,12 @@ public class UsersController {
 
                 message.setContent(out.toString(), "text/html");
 
-                Transport.send(message);
-
                 user.setToken(token);
                 user.setEnabled(true);
 
                 userDAO.save(user);
+
+                Transport.send(message);
 
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
