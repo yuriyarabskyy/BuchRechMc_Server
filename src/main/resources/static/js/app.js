@@ -307,12 +307,12 @@ brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
 
     $http.get($scope.servUrl+'/lectures/getAll').success(function (data, status, headers, config) {
 
-        if(data) $scope.data.lectures=data;
+        if(data){
+            $scope.data.lectures=data;
+            $scope.pdfUrl = $scope.servUrl + '/lectures/' + $scope.data.lectures[0];
+        }
 
     });
-
-    $scope.servUrl="http://bilanzportal.de/api";
-    $scope.pdfUrl = $scope.servUrl + '/lectures/' + $scope.data.lectures[0];
 
     $scope.showQuestionForPage = false;
     $scope.actualQuestion = {};
