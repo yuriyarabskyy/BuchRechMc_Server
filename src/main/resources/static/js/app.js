@@ -7,7 +7,7 @@ var model={
     questions:[],
     user:{},
     countOfChapters:5,
-    lectures:[]
+    lectures:["vorlesung1.pdf"]
 };
 
 var brmApp = angular.module("brmApp",['ui.materialize','pdf','ui.router']);
@@ -302,8 +302,6 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
 //PDF Controller
 brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
     $scope.servUrl="http://bilanzportal.de/api";
-
-    $scope.data.lectures = ["vorlesung1.pdf"];
 
     $http.get($scope.servUrl+'/lectures/getAll').success(function (data, status, headers, config) {
 
