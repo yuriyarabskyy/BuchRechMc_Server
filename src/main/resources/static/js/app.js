@@ -309,7 +309,7 @@ brmApp.controller('PdfLecturesCtrl',function ($scope, $http) {
 
         if(data){
             $scope.data.lectures=data;
-            $scope.pdfUrl = $scope.servUrl + '/lectures/' + $scope.data.lectures[0];
+            $scope.pdfUrl = $scope.servUrl + '/lectures/' + $scope.data.lectures[0].name;
         }
 
     });
