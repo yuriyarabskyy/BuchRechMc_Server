@@ -1,6 +1,5 @@
 package com.fortum.nokid.security;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
@@ -48,8 +47,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/api/users/register", "/api/users/verify", "/api/lectures/logo.png",
-                        "/api/lectures/responsive-email.jpeg").permitAll()
+                .antMatchers(
+                        "/login"
+                        , "/api/users/register"
+                        , "/api/users/verify"
+                        , "/api/lectures/logo.png"
+                        , "/api/lectures/responsive-email.jpeg"
+                        , "/test"
+                ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
