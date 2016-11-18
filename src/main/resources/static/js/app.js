@@ -7,7 +7,8 @@ var model={
     questions:[],
     user:{},
     countOfChapters:5,
-    lectures:[]
+    lectures:[],
+    exercises:[]
 };
 
 var brmApp = angular.module("brmApp",['ui.materialize','pdf','ui.router']);
@@ -36,7 +37,7 @@ brmApp.config(function ($stateProvider,$urlRouterProvider) {
         .state('exercises',{
             url:'/exercises',
             templateUrl:'html/exercisesTab.html',
-            controller:'MainAppCtrl'
+            controller:'ExerciseCtrl'
     })
         .state('addNewQuestion',{
             url:'/addNewQuestion',
@@ -174,6 +175,37 @@ brmApp.controller("MainAppCtrl", function ($scope,$http) {
 
 });
 
+//Exercise Controller
+brmApp.controller("ExerciseCtrl", function($scope){
+    $scope.data = {
+        "1234 Bank": null,
+        "5671 Kasse": null,
+        "5672 VR": null
+    };
+
+    $scope.actualQuestion = {content:"Kasse an Bank"};
+});
+
+//Exercise Directive
+brmApp.directive('answerDropdown', function () {
+    return {
+        restrict: 'A',
+        scope: true,
+        templateUrl: 'html/answersDropdown.html',
+
+        link: function (scope, el, attrs) {
+            var data = scope.data;
+            // set up autocomplete on load
+            angular.element(document).ready(function () {
+                scope.$slider = $('.autocomplete').autocomplete({
+                    data: data
+                });
+            });
+        }
+    }
+});
+
+//Login Controller
 brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
     $scope.servUrl="http://bilanzportal.de/";
 
