@@ -144,7 +144,10 @@ public class UsersController {
 
         List<User> users = query.list();
 
-        if (users.isEmpty()) return new ModelAndView("redirect:" + "http://bilanzportal.de/login?error");
+        if (users.isEmpty()) {
+            session.close();
+            return new ModelAndView("redirect:" + "http://bilanzportal.de/login?error");
+        }
         session.getTransaction().commit();
         UserRole userRole = new UserRole();
 
@@ -155,6 +158,8 @@ public class UsersController {
         session.beginTransaction();
         userRoleDAO.save(userRole);
         session.getTransaction().commit();
+
+        session.close();
         return new ModelAndView("redirect:" + "http://bilanzportal.de/login");
     }
 

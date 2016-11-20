@@ -39,10 +39,10 @@
       <file leaf-file-name="UsersController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="117" column="40" selection-start-line="117" selection-start-column="40" selection-end-line="117" selection-end-column="40" />
+            <state relative-caret-position="1347">
+              <caret line="147" column="28" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
               <folding>
-                <marker date="1479165545000" expanded="true" signature="4469:4509" ph="select * fro... users" />
+                <marker date="1479581651000" expanded="true" signature="4469:4509" ph="select * fro... users" />
               </folding>
             </state>
           </provider>
@@ -98,52 +98,6 @@
               <folding>
                 <marker date="1479165153000" expanded="true" signature="3665:4603" ph="{...}" />
                 <marker date="1479165153000" expanded="true" signature="9892:11530" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="9992:10089" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="10135:10179" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="10224:10542" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="10268:10535" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="10588:10744" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="10778:10896" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="10788:10860" ph="//..." />
-                <marker date="1479165153000" expanded="true" signature="10945:11223" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11116:11170" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11275:11527" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11307:11460" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11464:11521" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11564:19803" ph="[...]" />
-                <marker date="1479165153000" expanded="true" signature="11630:19802" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11706:19513" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="11862:12974" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="12121:12525" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="12672:12788" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="12792:12963" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="13070:14633" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="14447:14520" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="14524:14622" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="14542:14608" ph="//..." />
-                <marker date="1479165153000" expanded="true" signature="14746:14876" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="14802:14864" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="15017:15206" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="15059:15111" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="15146:15197" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="15364:15734" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="15511:15722" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="15875:16243" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="16022:16233" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="16345:17643" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="17744:17977" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="17782:17897" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="17901:17966" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="17988:18089" ph="//..." />
-                <marker date="1479165153000" expanded="true" signature="18144:19158" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="18323:18613" ph="[...]" />
-                <marker date="1479165153000" expanded="true" signature="18776:18936" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="18791:18884" ph="//..." />
-                <marker date="1479165153000" expanded="true" signature="18971:19146" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="18986:19094" ph="//..." />
-                <marker date="1479165153000" expanded="true" signature="19199:19506" ph="{...}" />
-                <marker date="1479165153000" expanded="true" signature="19525:19800" ph="{&quot;restrict&quot;: 'E'...}" />
-                <marker date="1479165153000" expanded="true" signature="19567:19683" ph="{&quot;actualQuestion&quot;: &quot;=question&quot;...}" />
               </folding>
             </state>
           </provider>
@@ -483,9 +437,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -946,12 +900,13 @@
       <workItem from="1478015811509" duration="2494000" />
       <workItem from="1478718421683" duration="3075000" />
       <workItem from="1479157952948" duration="1409000" />
-      <workItem from="1479165140203" duration="381000" />
+      <workItem from="1479165140203" duration="668000" />
+      <workItem from="1479579905084" duration="1446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36870000" />
+    <option name="totallyTimeSpent" value="38603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -963,9 +918,9 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66803277" sideWeight="0.49574015" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66712326" sideWeight="0.49574015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32148626" sideWeight="0.49452055" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29402262" sideWeight="0.49452055" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1024,14 +979,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java</url>
-          <line>71</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
@@ -1324,16 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/TopicsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <marker date="1478809829000" expanded="true" signature="1002:1068" ph="select topic... topics" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UpdateController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1357,52 +1294,6 @@
           <folding>
             <marker date="1479165153000" expanded="true" signature="3665:4603" ph="{...}" />
             <marker date="1479165153000" expanded="true" signature="9892:11530" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="9992:10089" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="10135:10179" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="10224:10542" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="10268:10535" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="10588:10744" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="10778:10896" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="10788:10860" ph="//..." />
-            <marker date="1479165153000" expanded="true" signature="10945:11223" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11116:11170" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11275:11527" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11307:11460" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11464:11521" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11564:19803" ph="[...]" />
-            <marker date="1479165153000" expanded="true" signature="11630:19802" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11706:19513" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="11862:12974" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="12121:12525" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="12672:12788" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="12792:12963" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="13070:14633" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="14447:14520" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="14524:14622" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="14542:14608" ph="//..." />
-            <marker date="1479165153000" expanded="true" signature="14746:14876" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="14802:14864" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="15017:15206" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="15059:15111" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="15146:15197" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="15364:15734" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="15511:15722" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="15875:16243" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="16022:16233" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="16345:17643" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="17744:17977" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="17782:17897" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="17901:17966" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="17988:18089" ph="//..." />
-            <marker date="1479165153000" expanded="true" signature="18144:19158" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="18323:18613" ph="[...]" />
-            <marker date="1479165153000" expanded="true" signature="18776:18936" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="18791:18884" ph="//..." />
-            <marker date="1479165153000" expanded="true" signature="18971:19146" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="18986:19094" ph="//..." />
-            <marker date="1479165153000" expanded="true" signature="19199:19506" ph="{...}" />
-            <marker date="1479165153000" expanded="true" signature="19525:19800" ph="{&quot;restrict&quot;: 'E'...}" />
-            <marker date="1479165153000" expanded="true" signature="19567:19683" ph="{&quot;actualQuestion&quot;: &quot;=question&quot;...}" />
           </folding>
         </state>
       </provider>
@@ -1452,12 +1343,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/TopicsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <marker date="1478809829000" expanded="true" signature="1002:1068" ph="select topic... topics" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fortum/nokid/controllers/UsersController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="117" column="40" selection-start-line="117" selection-start-column="40" selection-end-line="117" selection-end-column="40" />
+        <state relative-caret-position="1347">
+          <caret line="147" column="28" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
           <folding>
-            <marker date="1479165545000" expanded="true" signature="4469:4509" ph="select * fro... users" />
+            <marker date="1479581651000" expanded="true" signature="4469:4509" ph="select * fro... users" />
           </folding>
         </state>
       </provider>
