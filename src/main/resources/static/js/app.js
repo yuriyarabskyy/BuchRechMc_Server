@@ -193,7 +193,10 @@ brmApp.controller("LoginCtrl",function ($rootScope, $scope, $http, $location) {
                 method: 'GET',
                 url: $scope.servUrl+"/user"
             }).then(function(response) {
-                if(response) $rootScope.authenticated = true;
+                if(response){
+                    $rootScope.authenticated = true;
+                    console.log(response);
+                }
                 else $rootScope.authenticated = false;
                 callback && callback();
             }, function() {
@@ -245,7 +248,7 @@ brmApp.controller('addNewQuestionTabCtrl',function ($scope, $http) {
      console.log($scope.data.topics);
      });
 
-    $scope.getAllTopics=function () {//TODO delete dummy
+    $scope.getAllTopics=function () {
         return $scope.data.topics;
     };
 
@@ -384,7 +387,7 @@ brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$co
         scope.servUrl="http://bilanzportal.de/api";
         scope.isChoosingAnswerEnabled=true;
 
-         scope.onAnswerClick = function (event,answerId) {
+        scope.onAnswerClick = function (event,answerId) {
              console.log(event);
              var rightAnswerLetter;
              console.log(scope.actualQuestion);
@@ -415,7 +418,7 @@ brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$co
                  elem.addClass('red lighten-3');
                  angular.element(document).find('#answer'+rightAnswerLetter).addClass('green lighten-3');
              }
-         };
+        };
 
         //Normal mode = choosing NOT editing
         scope.setNormalQuestionView=function () {
@@ -551,9 +554,11 @@ brmApp.directive('myQuestion',['$http','$compile','$timeout',function ($http,$co
     };
     return{
         restrict : 'E',
-        scope : {actualQuestion:"=question",
-                isChoosingAnswerEnabled:"=isChoosingEnabled",
-                data:"="},
+        scope : {
+            actualQuestion:"=question",
+            isChoosingAnswerEnabled:"=isChoosingEnabled",
+            data:"="
+        },
         templateUrl: 'html/mainContentMC.html',
         require:["^?ngShow","^?ngClick"],
         link:linkFn
