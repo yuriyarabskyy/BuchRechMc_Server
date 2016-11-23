@@ -183,6 +183,24 @@ brmApp.controller("ExerciseCtrl", function($scope){
         "5672 VR": null
     };
 
+    $scope.linesCounter = 1;
+
+    $scope.addLine = function() {
+        $scope.linesCounter = $scope.linesCounter + 1;
+    };
+
+    $scope.removeLine = function() {
+
+        if ($scope.linesCounter != 1) {
+            $scope.linesCounter = $scope.linesCounter - 1;
+        }
+
+    };
+
+    $scope.getAllLines = function() {
+        return new Array($scope.linesCounter);
+    };
+
     $scope.actualQuestion = {content:"Kasse an Bank"};
 });
 
@@ -197,7 +215,7 @@ brmApp.directive('answerDropdown', function () {
             var data = scope.data;
             // set up autocomplete on load
             angular.element(document).ready(function () {
-                scope.$slider = $('.autocomplete').autocomplete({
+                scope.$slider = $('#').autocomplete({
                     data: data
                 });
             });
