@@ -16,4 +16,6 @@ public interface QuestionDAO extends CrudRepository<Question, Long> {
 
     List<Question> findByContentIgnoreCase(String content);
 
+    List<Question> findByFromPageLessThanEqualPageAndToPageGreaterThanEqualPage(int page);
+
 }

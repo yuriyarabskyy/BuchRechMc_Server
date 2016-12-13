@@ -16,25 +16,16 @@ import java.util.*;
 @RestController
 public class QuestionsController {
 
-    @RequestMapping(value ="/getById", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Question> getById(@RequestBody String ids){
+    @RequestMapping(value ="/getById", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity getById(@RequestParam("id") long id){
 
-        List<Question> questions = new LinkedList<>();
+        Question question = questionDAO.findById(id);
 
-        for (String id : ids.trim().split(",")) {
-
-            try {
-                Question question = questionDAO.findById(Long.parseLong(id));
-                if (question != null) questions.add(question);
-            }
-            catch (Exception ex) {
-                questions = new LinkedList<>();
-                questions.add(new Question(ex.toString()));
-                return questions;
-            }
-
+        if (question != null) {
+            return ResponseEntity.ok(questionDAO.findById(id));
+        } else {
+            return ResponseEntity.notFound().build();
         }
-        return questions;
     }
 
 
@@ -53,7 +44,7 @@ public class QuestionsController {
 
         try {
             questionDAO.save(questions);
-            lecturesController.addToMap(questions);
+
             for (Question q : questions) {
                 for (Answer a : q.getPossibleAnswers()) {
                     a.setQuestion(q);
@@ -125,9 +116,6 @@ public class QuestionsController {
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    @Autowired
-    private LecturesController lecturesController;
 
     public static class AnswerQuestionWrapper {
         private int user_id;

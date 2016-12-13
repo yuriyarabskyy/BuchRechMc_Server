@@ -3,6 +3,8 @@ package com.fortum.nokid.controllers;
 import com.fortum.nokid.entities.Lecture;
 import com.fortum.nokid.entities.LectureDAO;
 import com.fortum.nokid.entities.Question;
+import com.fortum.nokid.entities.QuestionDAO;
+import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +43,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class LecturesController {
 
     @Autowired
+    private QuestionDAO questionDAO;
+
+    @Autowired
     private LectureDAO lectureDAO;
 
     private final ResourceLoader resourceLoader;
 
-    private Map<Integer, ArrayList<Question>> pageQuestionMap = new HashMap<>();
-
     public static final String ROOT = "upload-dir";
-
-    private boolean firstTime = true;
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -61,58 +62,20 @@ public class LecturesController {
 
     }
 
-    @Transactional
-    private List<Question> scanQuestions() {
-        String sql = "select * from questions";
-        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
-        query.addEntity(Question.class);
-        return query.list();
-    }
-
-    public void addToMap(List<Question> list) {
-        for (Question q : list) {
-            for (int i = q.getFromPage(); i <= q.getToPage(); i++) {
-
-                if (pageQuestionMap.get(i) != null) {
-                    List<Question> qList = pageQuestionMap.get(i);
-                    boolean doesntExist = true;
-                    for (Question question : qList) {
-                        if (question.equals(q)) {
-                            doesntExist = false;
-                            break;
-                        }
-                    }
-                    if (doesntExist) qList.add(q);
-                }
-                else {
-                    ArrayList<Question> questions = new ArrayList<>();
-                    questions.add(q);
-                    pageQuestionMap.put(i, questions);
-                }
-            }
-        }
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/getQuestions", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     @Transactional
     public List<Question> getQuestions(@RequestParam("page")int page,
                                        @RequestParam(value = "chapter", required = false)Integer chapter) {
 
-        if (firstTime) {
-            addToMap(scanQuestions());
-            firstTime = false;
-        }
-
-        List<Question> list = pageQuestionMap.get(page);
-        List<Question> result = list;
+        List<Question> list = questionDAO.findByFromPageLessThanEqualPageAndToPageGreaterThanEqualPage(page);
         if (chapter != null) {
-            result = list.stream()
+            list = list.stream()
                     .filter(question -> question.getChapter() == chapter)
                     .collect(Collectors.toList());
         }
 
-        return result;
+        return list;
 
     }
 
@@ -120,7 +83,6 @@ public class LecturesController {
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
     @ResponseBody
     public ResponseEntity<?> handleFileUpload(HttpServletRequest request){
-                                   //RedirectAttributes redirectAttributes) {
         try {
 
             MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) request;
