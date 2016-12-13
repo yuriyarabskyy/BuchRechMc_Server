@@ -41,9 +41,7 @@ public class QuestionsController {
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public Iterable<Question> getAll() {
-        List<Question> questions = new ArrayList<>();
-        Iterable<Question> iterable = questionDAO.findAll();
-        iterable.forEach(question -> questions.add(question));
+        List<Question> questions = questionDAO.findAll();
         Collections.sort(questions, (Question q1, Question q2) -> q1.getFromPage() - q2.getFromPage());
         return questions;
     }

@@ -8,6 +8,8 @@ import java.util.List;
 @Transactional
 public interface QuestionDAO extends CrudRepository<Question, Long> {
 
+    List<Question> findAll();
+
     List<Question> findByIdAndContent(long id,String content);
 
     Question findById(long id);
