@@ -59,11 +59,7 @@ public class UsersController {
     @Autowired
     private UserRoleDAO userRoleDAO;
 
-    @Autowired
-    private SessionFactory sessionFactory;
 
-
-//    @CrossOrigin(origins = "http://bilanzportal.de")
     @Transactional
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody User user) {
@@ -128,44 +124,30 @@ public class UsersController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-//    @CrossOrigin(origins = "*")
+
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
     @Transactional
     @ResponseBody
     public ModelAndView verify(@RequestParam("token") String token) {
 
-        /*
-        org.hibernate.Session session = tr.getSessionFactory().openSession();
-        session.beginTransaction();
-        String sql = "select * from users where token = :token";
-
-        SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
-        query.addEntity(User.class);
-        query.setParameter("token", token);
-        */
-
         List<User> users = userDAO.findBytoken(token);
 
         if (users.isEmpty()) {
-//            session.close();
             return new ModelAndView("redirect:" + "http://bilanzportal.de/login?error");
         }
-//        session.getTransaction().commit();
+
         UserRole userRole = new UserRole();
 
         userRole.setEmail(users.get(0).getEmail());
 
         userRole.setRole(USER);
 
-//        session.beginTransaction();
         userRoleDAO.save(userRole);
-//        session.getTransaction().commit();
 
-//        session.close();
         return new ModelAndView("redirect:" + "http://bilanzportal.de/login");
     }
 
-//    @CrossOrigin(origins = "*")
+
     @RequestMapping(value = "/getUsersByName", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<User> getUsersByLastName(@RequestParam(value = "", required = false) String lastName,
                                              @RequestParam(value = "", required = false) String firstName) {
@@ -179,7 +161,7 @@ public class UsersController {
         return users;
     }
 
-//    @CrossOrigin(origins = "*")
+
     @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Iterable<User> getAll() { return userDAO.findAll(); }
 
