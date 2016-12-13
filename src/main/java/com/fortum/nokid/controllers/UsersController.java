@@ -134,6 +134,7 @@ public class UsersController {
     @ResponseBody
     public ModelAndView verify(@RequestParam("token") String token) {
 
+        /*
         org.hibernate.Session session = tr.getSessionFactory().openSession();
         session.beginTransaction();
         String sql = "select * from users where token = :token";
@@ -141,25 +142,26 @@ public class UsersController {
         SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         query.addEntity(User.class);
         query.setParameter("token", token);
+        */
 
-        List<User> users = query.list();
+        List<User> users = userDAO.findBytoken(token);
 
         if (users.isEmpty()) {
-            session.close();
+//            session.close();
             return new ModelAndView("redirect:" + "http://bilanzportal.de/login?error");
         }
-        session.getTransaction().commit();
+//        session.getTransaction().commit();
         UserRole userRole = new UserRole();
 
         userRole.setEmail(users.get(0).getEmail());
 
         userRole.setRole(USER);
 
-        session.beginTransaction();
+//        session.beginTransaction();
         userRoleDAO.save(userRole);
-        session.getTransaction().commit();
+//        session.getTransaction().commit();
 
-        session.close();
+//        session.close();
         return new ModelAndView("redirect:" + "http://bilanzportal.de/login");
     }
 

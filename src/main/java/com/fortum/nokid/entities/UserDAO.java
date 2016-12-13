@@ -14,6 +14,8 @@ public interface UserDAO extends CrudRepository<User, Long> {
 
     User findById(int id);
 
+    List<User> findBytoken(String token);
+
     List<User> findBylastNameIgnoreCase(String lastName);
 
     List<User> findByfirstNameIgnoreCase(String lastName);
