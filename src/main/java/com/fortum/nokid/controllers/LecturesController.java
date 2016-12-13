@@ -68,7 +68,7 @@ public class LecturesController {
     public List<Question> getQuestions(@RequestParam("page")int page,
                                        @RequestParam(value = "chapter", required = false)Integer chapter) {
 
-        List<Question> list = questionDAO.findByFromPageLessThanEqualPageAndToPageGreaterThanEqualPage(page);
+        List<Question> list = questionDAO.findByFromPageLessThanEqualAndToPageGreaterThanEqual(page);
         if (chapter != null) {
             list = list.stream()
                     .filter(question -> question.getChapter() == chapter)

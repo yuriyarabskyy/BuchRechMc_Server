@@ -1,6 +1,9 @@
 package com.fortum.nokid.entities;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
 import javax.transaction.Transactional;
 
 import java.util.List;
@@ -16,6 +19,7 @@ public interface QuestionDAO extends CrudRepository<Question, Long> {
 
     List<Question> findByContentIgnoreCase(String content);
 
-    List<Question> findByFromPageLessThanEqualPageAndToPageGreaterThanEqualPage(int page);
+    @Query("select q from Question q where q.fromPage <= :page and q.toPage >= :page")
+    List<Question> findByFromPageLessThanEqualAndToPageGreaterThanEqual(@Param("page")int page);
 
 }
